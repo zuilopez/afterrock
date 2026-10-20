@@ -1,0 +1,21 @@
+{
+  "updated": "2026-10-20",
+  "note": "Goals Claude has finished. The VI page ticks matching items in your Goal list.",
+  "items": [
+    {"t": "Trailer thành trang riêng, cách đều trong menu", "done": true, "v": "v1.3"},
+    {"t": "Customization: bỏ VI, ngôn ngữ vie | eng", "done": true, "v": "v1.3"},
+    {"t": "Footer FX: bỏ glow và FX scan, giữ độ dày scanline", "done": true, "v": "v1.3"},
+    {"t": "Font nhập vào Page, có align và vị trí dọc trong Cover", "done": true, "v": "v1.3"},
+    {"t": "Icon dark mode hình thoi, ngôi sao mảnh và nhọn hơn", "done": true, "v": "v1.3"},
+    {"t": "FPS ở giữa vùng Lower, thanh kéo 2 cột luôn hiện", "done": true, "v": "v1.3"},
+    {"t": "Thanh trượt thành line mỏng: tên - tỉ lệ - thanh kéo", "done": true, "v": "v1.3"},
+    {"t": "Directional blur thành con của Blur, Random noise", "done": true, "v": "v1.3"},
+    {"t": "Glow: màu solid hoặc gradient", "done": true, "v": "v1.3"},
+    {"t": "Bỏ Liquid glass, Mica thành Glass (độ mờ, độ trong)", "done": true, "v": "v1.3"},
+    {"t": "Light-on chọn element bằng select, bỏ mô tả", "done": true, "v": "v1.3"},
+    {"t": "Header nhập vào Cover (Notch, Lower), theme color dưới Extend", "done": true, "v": "v1.3"},
+    {"t": "Line đề mục Body đổi màu theme khi chọn", "done": true, "v": "v1.3"},
+    {"t": "Layout: Align left, Justified, Align right; icon dark sát ngôi sao", "done": true, "v": "v1.3"},
+    {"t": "Thêm mục Goal trong CUSTOM", "done": true, "v": "v1.3"}
+  ]
+}
