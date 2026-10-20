@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Leonida Log News</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one-column reading page — article first, then the other headlines as an index list */
+:root{--bg:#FBF8F6;--fg:#151116;--muted:#857A82;--line:#E6DEE1;--pink:#E5306B;--chip:#F2ECEE;--symf:invert(1) brightness(.15);
+  --display:"Archivo",Impact,"Arial Narrow",sans-serif;--body:"Archivo",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#110D13;--fg:#F3EDF0;--muted:#9A8E96;--line:#2A2229;--pink:#FF4F86;--chip:#1E1820;--symf:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#110D13;--fg:#F3EDF0;--muted:#9A8E96;--line:#2A2229;--pink:#FF4F86;--chip:#1E1820;--symf:none;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:inherit}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.wrap{max-width:1240px;margin:0 auto}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:14px}
+.logo{display:flex;align-items:center;font-family:var(--display);font-weight:900;font-stretch:72%;font-size:20px}
+.logo a{text-decoration:none}.logo a:hover{color:var(--pink)}
+.logo b{color:var(--pink);font-weight:200;margin:0 3px;font-family:system-ui,sans-serif}
+.r{display:flex;gap:12px;align-items:center;color:var(--muted)}
+.r a{text-decoration:none;border-bottom:1px solid var(--line)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{font:inherit;letter-spacing:inherit;background:none;border:0;color:var(--muted);padding:3px 8px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+article{max-width:780px;margin:0 auto;padding-block:40px 20px}
+.crumb{color:var(--muted);margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}
+.crumb a{text-decoration:none;border-bottom:1px solid var(--line)}
+.im{aspect-ratio:16/9;max-width:100%;background:var(--chip) center/cover no-repeat;margin-bottom:22px}
+.meta{display:flex;justify-content:space-between;gap:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+h1{font-family:var(--display);font-weight:800;font-stretch:76%;font-size:clamp(32px,5vw,56px);line-height:1;margin:14px 0 16px;text-wrap:balance}
+.sum{font-size:19px;max-width:62ch;margin:0 0 26px}
+.go{display:inline-flex;gap:8px;align-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  color:var(--bg);background:var(--fg);padding:12px 16px}
+.go:hover{background:var(--pink)}
+.note{color:var(--muted);font-size:13px;margin-top:14px}
+.more{max-width:780px;margin:0 auto;padding-block:20px 60px}
+.more h2{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 6px}
+.more a{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:12px 0;border-top:1px dashed var(--line);text-decoration:none;align-items:start}
+.more a:hover b{color:var(--pink)}
+.more .d{color:var(--muted)}
+.more b{font-weight:650;display:block}
+.more span.s{color:var(--muted);font-size:13px}
+.empty{color:var(--muted);font-family:var(--mono);font-size:12px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header><div class="wrap bar">
+  <div class="logo"><a href="../">afterrock</a><b>/</b><a href="./">VI</a></div>
+  <div class="r mono"><a href="./#news" id="back">← News</a><div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="vi">VI</button></div></div>
+</div></header>
+
+<main class="wrap">
+  <article id="art"><p class="empty">Loading…</p></article>
+  <section class="more" id="more"></section>
+</main>
+
+<script>
+const NEWS_RAW = "https://raw.githubusercontent.com/zuilopez/afterrock/main/VI/news.json";
+const SLIDES = ["01_UE_RIDEOUT_CUSTOMS_01","02_UE_RIDEOUT_CUSTOMS_02","03_UE_SAFEHOUSE_VEHICLES_02","04_UE_SARAS_SALON_01","05_UE_SARAS_SALON_02","06_UE_SQUALO_01","07_UE_SQUALO_04","08_UE_STOCK_305_01","09_UE_STOCK_305_02","10_UE_VAPID_BUGGY_01","11_UE_VAPID_BUGGY_03","12_UE_VAPID_BUGGY_04","13_UE_VAPID_GANADO_RETRO_BUILD_01","14_UE_VICE_CITY_STYLE_01","15_UE_VICE_CITY_STYLE_04","16_UE_VICE_CITY_STYLE_05","17_UE_WEAPON_VARIANTS_01","18_UE_WYMAN_CAR_COLLECTION_04","19_UE_WYMAN_CAR_COLLECTION_05","20_UE_WYMAN_CAR_COLLECTION_06","21_VV_PACK_01","22_VV_PACK_02","23_VV_PACK_EXCLUSIVE_LOOKS_03","24_VV_PACK_EXCLUSIVE_LOOKS_04","25_VV_PACK_VAPID_STANIER_01","26_VV_PACK_VAPID_STANIER_02","27_VV_PACK_VAPID_STANIER_03","28_VV_PACK_VAPID_STANIER_04","29_VV_WEAPON_PATTERN_01","30_Vice_City_01"].map(n=>"slides/"+n+".jpg");
+// same theme colour and light/dark choice as the VI page
+try{ const t=localStorage.getItem("vi_theme"); if(t) document.documentElement.dataset.theme=t; const st=JSON.parse(localStorage.getItem("vi_style_v6")||"{}"); if(st.theme) document.documentElement.style.setProperty("--pink", st.theme); }catch(e){}
+let LANG="en"; try{ LANG = localStorage.getItem("vi_lang")==="vi" ? "vi" : "en"; }catch(e){}
+const L=(vi,en)=>LANG==="vi"?vi:en;
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pad=n=>String(n).padStart(2,"0");
+const fmt = s => { const d=new Date(s); return isNaN(d)?"":pad(d.getDate())+"."+pad(d.getMonth()+1)+"."+d.getFullYear(); };
+const fb = s => SLIDES[[...String(s)].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7)%SLIDES.length];
+let NEWS=[];
+function render(){
+  document.documentElement.lang=LANG;
+  document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===LANG));
+  document.getElementById("back").textContent = "← "+L("Tin tức","News");
+  const id = decodeURIComponent(location.hash.slice(1));
+  const n = NEWS.find(x=>x.id===id) || NEWS[0];
+  const art=document.getElementById("art");
+  if(!n){ art.innerHTML=`<p class="empty">${L("Chưa có tin.","No news yet.")}</p>`; return; }
+  document.title = n.title+" · Leonida Log";
+  art.innerHTML = `<div class="crumb mono"><a href="./#news">${L("Tin tức","News")}</a><span>/</span><span>${esc(n.source)}</span></div>
+    <div class="im" style="background-image:url('${esc(n.image||fb(n.id))}'),url('${fb(n.id)}')"></div>
+    <div class="meta mono"><span>${esc(n.source)}</span><span>${fmt(n.date)}</span></div>
+    <h1>${esc(n.title)}</h1>
+    ${n.summary?`<p class="sum">${esc(n.summary)}</p>`:""}
+    <a class="go" href="${esc(n.url)}" target="_blank" rel="noopener">${L("Đọc toàn bộ tại","Read the full story at")} ${esc(n.source)} ↗</a>
+    <p class="note">${L("Leonida Log chỉ tóm tắt và dẫn nguồn. Nội dung đầy đủ thuộc về trang gốc.","Leonida Log only summarises and links. The full story belongs to the original site.")}</p>`;
+  const rest = NEWS.filter(x=>x!==n).slice(0,8);
+  document.getElementById("more").innerHTML = rest.length ? `<h2>${L("Tin khác","More news")}</h2>` + rest.map(x=>`<a href="#${encodeURIComponent(x.id)}"><span class="d mono">${fmt(x.date)}</span><span><b>${esc(x.title)}</b><span class="s">${esc(x.source)}</span></span></a>`).join("") : "";
+  scrollTo(0,0);
+}
+async function load(){
+  for(const u of [NEWS_RAW+"?t="+Math.floor(Date.now()/36e5), "news.json"]){
+    try{ const r=await fetch(u,{cache:"no-store"}); if(!r.ok) continue; const j=await r.json(); if(Array.isArray(j.items)&&j.items.length){ NEWS=j.items; break; } }catch(e){}
+  }
+  render();
+}
+addEventListener("hashchange", render);
+document.querySelectorAll("[data-lang]").forEach(b=>b.onclick=()=>{ LANG=b.dataset.lang; try{ localStorage.setItem("vi_lang",LANG); }catch(e){} render(); });
+load();
+</script>
+
+</body>
+</html>
