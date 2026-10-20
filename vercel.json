@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/vi", "destination": "/VI/", "permanent": false },
+    { "source": "/vi/", "destination": "/VI/", "permanent": false }
+  ]
+}
