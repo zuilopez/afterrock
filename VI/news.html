@@ -40,6 +40,7 @@ h1{font-family:var(--display);font-weight:800;font-stretch:76%;font-size:clamp(3
 .go{display:inline-flex;gap:8px;align-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
   color:var(--bg);background:var(--fg);padding:12px 16px}
 .go:hover{background:var(--pink)}
+.go:hover .src{color:inherit}
 .note{color:var(--muted);font-size:13px;margin-top:14px}
 .more{max-width:780px;margin:0 auto;padding-block:20px 60px}
 .more h2{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 6px}
@@ -48,6 +49,16 @@ h1{font-family:var(--display);font-weight:800;font-stretch:76%;font-size:clamp(3
 .more .d{color:var(--muted)}
 .more b{font-weight:650;display:block}
 .more span.s{color:var(--muted);font-size:13px}
+.src{color:var(--pink)}
+.arch{max-width:780px;margin:0 auto;padding-block:40px 60px}
+.arch h1{margin-top:0}
+.arch h2{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);font-weight:500;margin:34px 0 6px}
+.arch a{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:12px 0;border-top:1px dashed var(--line);text-decoration:none;align-items:start}
+.arch a:hover b{color:var(--pink)}
+.arch .crumb a{display:inline;padding:0;border-top:0;border-bottom:1px solid var(--line)}
+.arch .d{color:var(--muted)}
+.arch b{font-weight:650;display:block}
+.arch .count{color:var(--muted)}
 .empty{color:var(--muted);font-family:var(--mono);font-size:12px}
 a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
 </style>
@@ -60,6 +71,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offse
 </div></header>
 
 <main class="wrap">
+  <section class="arch" id="arch" hidden></section>
   <article id="art"><p class="empty">Loading…</p></article>
   <section class="more" id="more"></section>
 </main>
@@ -68,7 +80,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offse
 const NEWS_RAW = "https://raw.githubusercontent.com/zuilopez/afterrock/main/VI/news.json";
 const SLIDES = ["01_UE_RIDEOUT_CUSTOMS_01","02_UE_RIDEOUT_CUSTOMS_02","03_UE_SAFEHOUSE_VEHICLES_02","04_UE_SARAS_SALON_01","05_UE_SARAS_SALON_02","06_UE_SQUALO_01","07_UE_SQUALO_04","08_UE_STOCK_305_01","09_UE_STOCK_305_02","10_UE_VAPID_BUGGY_01","11_UE_VAPID_BUGGY_03","12_UE_VAPID_BUGGY_04","13_UE_VAPID_GANADO_RETRO_BUILD_01","14_UE_VICE_CITY_STYLE_01","15_UE_VICE_CITY_STYLE_04","16_UE_VICE_CITY_STYLE_05","17_UE_WEAPON_VARIANTS_01","18_UE_WYMAN_CAR_COLLECTION_04","19_UE_WYMAN_CAR_COLLECTION_05","20_UE_WYMAN_CAR_COLLECTION_06","21_VV_PACK_01","22_VV_PACK_02","23_VV_PACK_EXCLUSIVE_LOOKS_03","24_VV_PACK_EXCLUSIVE_LOOKS_04","25_VV_PACK_VAPID_STANIER_01","26_VV_PACK_VAPID_STANIER_02","27_VV_PACK_VAPID_STANIER_03","28_VV_PACK_VAPID_STANIER_04","29_VV_WEAPON_PATTERN_01","30_Vice_City_01"].map(n=>"slides/"+n+".jpg");
 // same theme colour and light/dark choice as the VI page
-try{ const t=localStorage.getItem("vi_theme"); if(t) document.documentElement.dataset.theme=t; const st=JSON.parse(localStorage.getItem("vi_style_v6")||"{}"); if(st.theme) document.documentElement.style.setProperty("--pink", st.theme); }catch(e){}
+try{ const t=localStorage.getItem("vi_theme"); if(t) document.documentElement.dataset.theme=t; const st=JSON.parse((localStorage.getItem("vi_style_v7")||localStorage.getItem("vi_style_v6"))||"{}"); if(st.theme) document.documentElement.style.setProperty("--pink", st.theme); }catch(e){}
 let LANG="en"; try{ LANG = localStorage.getItem("vi_lang")==="vi" ? "vi" : "en"; }catch(e){}
 const L=(vi,en)=>LANG==="vi"?vi:en;
 const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -81,19 +93,29 @@ function render(){
   document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===LANG));
   document.getElementById("back").textContent = "← "+L("Tin tức","News");
   const id = decodeURIComponent(location.hash.slice(1));
-  const n = NEWS.find(x=>x.id===id) || NEWS[0];
-  const art=document.getElementById("art");
-  if(!n){ art.innerHTML=`<p class="empty">${L("Chưa có tin.","No news yet.")}</p>`; return; }
+  const art=document.getElementById("art"), arch=document.getElementById("arch"), more=document.getElementById("more");
+  const n = NEWS.find(x=>x.id===id);
+  if(!n){ /* no article picked: show every article we keep, newest first, grouped by month */
+    art.hidden=true; more.hidden=true; arch.hidden=false; document.title="Articles · Leonida Log";
+    document.getElementById("back").textContent = "← VI";
+    const M=LANG==="vi"?["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"]:["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const list=[...NEWS].sort((a,b)=>new Date(b.date)-new Date(a.date)); let cur="", h="";
+    for(const x of list){ const d=new Date(x.date), g=isNaN(d)?"—":M[d.getMonth()]+" "+d.getFullYear(); if(g!==cur){ cur=g; h+=`<h2>${g}</h2>`; }
+      h+=`<a href="#${encodeURIComponent(x.id)}"><span class="d mono">${fmt(x.date)}</span><span><b>${esc(x.title)}</b><span class="mono src">${esc(x.source)}</span></span></a>`; }
+    arch.innerHTML=`<div class="crumb mono"><a href="./#news">VI</a><span>/</span><span>${L("Tin tức","News")}</span></div><h1>${L("Tất cả bài viết","All articles")}</h1><p class="count mono">${list.length} ${L("bài","articles")}</p>`+(h||`<p class="empty">${L("Chưa có tin.","No news yet.")}</p>`);
+    scrollTo(0,0); return;
+  }
+  art.hidden=false; more.hidden=false; arch.hidden=true;
   document.title = n.title+" · Leonida Log";
-  art.innerHTML = `<div class="crumb mono"><a href="./#news">${L("Tin tức","News")}</a><span>/</span><span>${esc(n.source)}</span></div>
+  art.innerHTML = `<div class="crumb mono"><a href="news.html">${L("Tất cả bài viết","All articles")}</a><span>/</span><span class="src">${esc(n.source)}</span></div>
     <div class="im" style="background-image:url('${esc(n.image||fb(n.id))}'),url('${fb(n.id)}')"></div>
-    <div class="meta mono"><span>${esc(n.source)}</span><span>${fmt(n.date)}</span></div>
+    <div class="meta mono"><span class="src">${esc(n.source)}</span><span>${fmt(n.date)}</span></div>
     <h1>${esc(n.title)}</h1>
     ${n.summary?`<p class="sum">${esc(n.summary)}</p>`:""}
-    <a class="go" href="${esc(n.url)}" target="_blank" rel="noopener">${L("Đọc toàn bộ tại","Read the full story at")} ${esc(n.source)} ↗</a>
+    <a class="go" href="${esc(n.url)}" target="_blank" rel="noopener">${L("Đọc toàn bộ tại","Read the full story at")} <span class="src">${esc(n.source)}</span> ↗</a>
     <p class="note">${L("Leonida Log chỉ tóm tắt và dẫn nguồn. Nội dung đầy đủ thuộc về trang gốc.","Leonida Log only summarises and links. The full story belongs to the original site.")}</p>`;
   const rest = NEWS.filter(x=>x!==n).slice(0,8);
-  document.getElementById("more").innerHTML = rest.length ? `<h2>${L("Tin khác","More news")}</h2>` + rest.map(x=>`<a href="#${encodeURIComponent(x.id)}"><span class="d mono">${fmt(x.date)}</span><span><b>${esc(x.title)}</b><span class="s">${esc(x.source)}</span></span></a>`).join("") : "";
+  document.getElementById("more").innerHTML = rest.length ? `<h2>${L("Tin khác","More news")} · <a href="news.html" style="display:inline;border:0;padding:0;color:var(--pink)">${L("tất cả","see all")}</a></h2>` + rest.map(x=>`<a href="#${encodeURIComponent(x.id)}"><span class="d mono">${fmt(x.date)}</span><span><b>${esc(x.title)}</b><span class="s src">${esc(x.source)}</span></span></a>`).join("") : "";
   scrollTo(0,0);
 }
 async function load(){

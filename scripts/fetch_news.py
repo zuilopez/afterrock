@@ -10,7 +10,7 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 OUT = Path(__file__).resolve().parent.parent / "VI" / "news.json"
-KEEP = 40
+KEEP = 300  # older articles stay readable on news.html (archive)
 PICK_PER_RUN = 3
 MATCH = re.compile(r"\b(GTA\s?(6|VI)|Grand Theft Auto\s?(6|VI))\b", re.I)
 FEEDS = [
