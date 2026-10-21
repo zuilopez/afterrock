@@ -113,8 +113,8 @@ body{transition:margin-right .35s cubic-bezier(.16,1,.3,1)}
 .el.sym img{display:block;height:calc(16px * var(--hs,1));width:auto}
 .frame>.el.sym{position:absolute;z-index:6;touch-action:none;line-height:0}
 .el.sym .sg{display:block;height:calc(20px * var(--hs,1));aspect-ratio:var(--sar,2.5);background:var(--symc,#fff);-webkit-mask:var(--symu) center/contain no-repeat;mask:var(--symu) center/contain no-repeat}
-html.cpopen .frame>.el.sym{cursor:move;outline:1px dashed color-mix(in srgb,var(--th1) 70%,transparent);outline-offset:4px}
-.frame>.el.sym.drag{outline-style:solid}
+html.cpopen .frame>.el.sym{cursor:move}
+.frame>.el.sym.drag{cursor:grabbing}
 .line .el.sym img{filter:var(--symf)}
 .el.fps{font-weight:700}
 .line .slot .el.fps{align-self:flex-end;text-align:right;margin-top:4px}
@@ -731,7 +731,7 @@ const DEF = {
   zone:{symbol:"center",sx:50},
   sym:{show:true,src:"",cm:"solid",c:"#ffffff",sx:56,sy:3},
   fcol:{game:{m:"theme",c1:"#ff6bd0",c2:"#22d3ee"},cd:{m:"solid",c1:"#f2f2f4",c2:"#ff6bd0"},date:{m:"theme",c1:"#ff6bd0",c2:"#22d3ee"}},
-  low:{split:50},
+  low:{split:50,tws:0,dws:0},
   fal:{fl:"left",fr:"right"},
   from:"From Gang Thép Auto with love\nsince MMXXIV",
   fps:false,
@@ -859,6 +859,7 @@ function place(){
   $("lowL").appendChild(EL.time); $("lowR").appendChild(EL.from); if(S.fps) $("lowR").appendChild(EL.fps);
   $("lowL").dataset.al = S.fal.fl; $("lowR").dataset.al = S.fal.fr;
   EL.from.textContent = S.from;
+  EL.time.style.wordSpacing=((S.low.tws||0)/100)+"em"; EL.from.style.wordSpacing=((S.low.dws||0)/100)+"em";
   $("chead").style.setProperty("--hs", S.hdr.size/100);
   rowDown.style.setProperty("--sp", splitPct()+"%");
   runFps();
@@ -1366,7 +1367,7 @@ const TABS = () => { const on=L("Bật","On"), inten=L("Cường độ","Intensi
      + `<div class="f"><span>${L("Căn nhanh","Quick")}</span><div class="seg ico" data-seg="sym.sx">${[["0","left"],["50","center"],["100","right"]].map(([v,a])=>`<button type="button" data-v="${v}" aria-label="${a}" title="${a}"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="${AICO[a]}"/></svg></button>`).join("")}</div></div>`
      + seg("sym.cm",L("Màu","Color"),[["theme","Theme"],["solid","Solid"]]) + sub("sym.cm:solid", col("sym.c",L("Màu","Color")))
      + `<p class="hint">${L("Khi panel đang mở, kéo thả symbol ngay trên Cover để đặt vị trí. Ảnh tải lên nên là PNG nền trong.","While this panel is open, drag the symbol on the cover to place it. Uploads work best as transparent PNGs.")}</p>`))
-  +grp("Lower", rng("low.split",L("Chia cột","Split"),10,90,1,"%") + alico("fal.fl","Time",["left","center","right","justify"]) + alico("fal.fr","Detail",["left","center","right","justify"]) + `<textarea id="c_from" data-k="from" rows="3" aria-label="Detail"></textarea>` + tog("fps",L("Hiện FPS (dưới Detail)","Show FPS (under Detail)")))
+  +grp("Lower", rng("low.split",L("Chia cột","Split"),10,90,1,"%") + alico("fal.fl","Time",["left","center","right","justify"]) + rng("low.tws",L("Word spacing · Time","Word spacing · Time"),-50,300,1,"") + alico("fal.fr","Detail",["left","center","right","justify"]) + rng("low.dws",L("Word spacing · Detail","Word spacing · Detail"),-50,300,1,"") + `<textarea id="c_from" data-k="from" rows="3" aria-label="Detail"></textarea>` + tog("fps",L("Hiện FPS (dưới Detail)","Show FPS (under Detail)")))
   +grp(L("Slide ảnh","Slides"), srng("slide.every",L("Đổi ảnh mỗi","Change every"),EVERY()) + seg("slide.tr",L("Chuyển cảnh","Transition"),[["pan","Pan"],["fade","Fade"],["blur","Blur"],["dblur","Directional blur"],["stretch","Stretch"],["broken","Broken"]]) + rng("slide.dur",L("Thời gian","Duration"),.3,4,.1,"s") + sub("slide.tr:dblur", rng("slide.dbi",L("Cường độ","Intensity"),20,400,5,"px")) + sub("slide.tr:stretch", rng("slide.sti",L("Độ kéo dãn","Stretch"),1.1,6,.1,"×")) + `<div class="btns"><button type="button" class="btn" data-act="slideTry">${L("Xem thử","Preview")}</button></div>`
      + `<div class="btns"><a class="btn" href="https://github.com/zuilopez/afterrock/upload/main/VI/slides" target="_blank" rel="noopener">${L("Thêm ảnh trên GitHub ↗","Add images on GitHub ↗")}</a><a class="btn" href="https://github.com/zuilopez/afterrock/tree/main/VI/slides" target="_blank" rel="noopener">${L("Mở thư mục ↗","Open folder ↗")}</a></div>`)],
  ["page",L("Trang","Page"), ()=>{
@@ -1408,7 +1409,7 @@ const TABS = () => { const on=L("Bật","On"), inten=L("Cường độ","Intensi
    glow:["Glow", tog("fx.glow.on",on) + sub("fx.glow.on:true", rng("fx.glow.i",inten,0,100) + seg("fx.glow.cm",L("Màu","Color"),[["solid","Solid"],["grad","Gradient"]]) + col("fx.glow.c1",L("Màu 1","Color 1")) + sub("fx.glow.cm:grad", col("fx.glow.c2",L("Màu 2","Color 2"))))],
    vig:["Vignette", tog("fx.vig.on",on) + sub("fx.vig.on:true", rng("fx.vig.amt",inten,0,100) + rng("fx.vig.scale","Scale",50,200,1,"%") + rng("fx.vig.rot",L("Xoay","Rotation"),0,180,1,"°"))],
    ab:["Chromatic aberration", tog("fx.ab.on",on) + sub("fx.ab.on:true", rng("fx.ab.amt",L("Độ lệch màu","Offset"),0,20,1,"px"))],
-   text:["Text · Symbol", `<p class="hint">${L("Lớp chữ của Cover (Title, Countdown, Date, Symbol). Hiệu ứng đặt trên lớp này sẽ tác động lên cả chữ. Neon đi theo lớp chữ.","The cover's text layer (Title, Countdown, Date, Symbol). Effects placed above it also change the text. Neon follows this layer.")}</p>`],
+   text:["Text", `<p class="hint">${L("Lớp chữ của Cover (Title, Countdown, Date, Symbol). Hiệu ứng đặt trên lớp này sẽ tác động lên cả chữ. Neon đi theo lớp chữ.","The cover's text layer (Title, Countdown, Date, Symbol). Effects placed above it also change the text. Neon follows this layer.")}</p>`],
    light:["Neon", tog("fx.light.on",on) + sub("fx.light.on:true", `<div class="f"><span>Element</span><div class="btns">${chip("fx.light.title","Title")}${chip("fx.light.cd","Countdown")}${chip("fx.light.date","Date")}</div></div>` + rng("fx.light.glow","Glow",0,100) + rng("fx.light.emit","Emission",0,100))]};
    return `<p class="hint">${L("Giữ vạch màu rồi kéo để xếp lớp như Photoshop: mục trên cùng là lớp nằm trên cùng.","Press and hold the coloured bar, then drag to stack layers like Photoshop: the top item is the top layer.")}</p>`
      + S.fx.order.map(k=>`<div class="grp dg${fxOpen.has(k)?" open":""}" data-fxk="${k}"><h5 class="dh"><button type="button" class="grip" aria-label="${L("Kéo để đổi thứ tự","Drag to reorder")}"></button><span class="nm">${G[k][0]}</span><i class="st${fxOn(k)?" on":""}"></i></h5><div class="gb"><div class="gi">${G[k][1]}</div></div></div>`).join(""); }],
@@ -1491,7 +1492,7 @@ const RERENDER = k => {
   else if(k.startsWith("cap")) applyCapFx();
   else if(k==="ui.fel") buildPanel();
   else if(k.startsWith("ty")) applyY();
-  else if(k==="low.split"||k==="from"||k.startsWith("fal")||k==="fps"||k.startsWith("zone")||k.startsWith("hdr")) { place(); if(k==="hdr.size") fitCD(); }
+  else if(k.startsWith("low")||k==="from"||k.startsWith("fal")||k==="fps"||k.startsWith("zone")||k.startsWith("hdr")) { place(); if(k==="hdr.size") fitCD(); }
 };
 function commit(k,v){ setP(k,v); save(); try{ RERENDER(k); }catch(err){ console.error(err); } syncPanel(); }
 const lazyText = new Set(["page.gh","font.game.font","font.cd.font","font.date.font","font.name.font"]);
