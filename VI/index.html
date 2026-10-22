@@ -49,7 +49,8 @@ html.pgfx header{background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit
 .logo a:hover{color:var(--pink)}
 .logo b{color:var(--pink);font-weight:200;margin:0 3px;font-family:system-ui,sans-serif}
 .vdiv{width:1px;height:16px;background:var(--line)}
-.lays{display:flex;gap:4px}
+.lays{display:flex;gap:4px;margin-right:6px}
+.endgrp .vdiv{margin-right:8px}
 .lays button{width:24px;height:22px;display:grid;place-items:center;background:none;border:0;border-radius:4px;color:var(--fg);opacity:.28;cursor:pointer;padding:0;transition:opacity .2s}
 .lays button:hover{opacity:.6}
 .lays button svg{width:15px;height:15px}
@@ -164,9 +165,6 @@ html.cpopen .frame>.el.sym,html.cpopen .fin .ht,html.cpopen .hc,html.cpopen .hd{
 .fgrad,.fgrad .w{background:linear-gradient(100deg,var(--fg1),var(--fg2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none}
 .tfx-glass,.tfx-glass .w{color:color-mix(in srgb,var(--gcol,#fff) calc(100% - var(--gtr,50%)),transparent)!important;-webkit-text-fill-color:currentColor}
 .lgx{position:absolute;z-index:2;pointer-events:none;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-.lgx.b{background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.03) 50%,rgba(255,255,255,.1))}
-.lgx.h{background-size:100% 100%;mix-blend-mode:screen}
-.lgx.b.noedge{background:none}
 /* cover arrows: bare chevrons, theme glow on press */
 html.shooting .navb,html.shooting .frame>.el.sym{outline:0!important}
 html.shooting .navb{display:none}
@@ -330,7 +328,7 @@ html[data-lay="right"] footer.site .vb{text-align:left}
   .bar{flex-wrap:wrap;row-gap:10px}
   .rgrp{order:3;flex:1 1 100%;flex-wrap:wrap;justify-content:space-between!important;gap:10px 12px;flex-direction:row!important;align-items:center!important}
   .rgrp nav{flex-direction:row!important;gap:14px!important}
-  .lays{display:none}.lgrp .vdiv{display:none}
+  .lays,.endgrp .vdiv{display:none}
   .logo{font-size:17px}
   .news{grid-template-columns:1fr}
   .ncard.sm{grid-template-columns:minmax(0,38%) minmax(0,1fr)}
@@ -403,6 +401,13 @@ html[data-lay="right"] footer.site .vb{text-align:left}
 #cp .wmeter .wbar{display:block;height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
 #cp .wmeter .wbar i{display:block;height:100%;background:linear-gradient(90deg,#7ee2a8,#f2c14e 50%,#ff6b6b)}
 #cp .tsub{display:flex;flex-direction:column;gap:10px;border-top:1px dashed rgba(255,255,255,.1);padding-top:10px}
+#cp .seg.tel{flex-wrap:nowrap}#cp .seg.tel button{flex:1 1 0;padding:8px 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+#cp .f.telf{grid-template-columns:1fr}
+#cp .f.rg .val{display:flex;align-items:center;gap:1px}
+#cp input.num{width:4.6ch;text-align:right;margin-right:2px;background:none;border:0;border-bottom:1px solid transparent;color:#8e879a;font:inherit;font-size:11px;padding:0;text-align:left;-moz-appearance:textfield;appearance:textfield}
+#cp input.num::-webkit-inner-spin-button,#cp input.num::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+#cp input.num:hover,#cp input.num:focus{border-bottom-color:var(--pink);color:#f2f2f4;outline:0}
+#cp .f.rg{grid-template-columns:100px 52px minmax(0,1fr)}
 #cp h6{margin:0;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#cfc9d8;font-weight:500}
 #cp .dh .st{width:6px;height:6px;border-radius:50%;border:1px solid #8e879a;flex:none}
 #cp .dh .st.on{background:var(--pink);border-color:var(--pink)}
@@ -499,12 +504,6 @@ html[data-lay="right"] footer.site .vb{text-align:left}
   <div class="wrap bar">
     <div class="lgrp">
       <div class="logo"><a href="../" title="afterrock hub">afterrock</a><b>/</b><a href="#top">VI</a></div>
-      <span class="vdiv"></span>
-      <div class="lays" role="group" aria-label="Layout">
-        <button type="button" data-lay="left" aria-label="Align left"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4h12M2 8h7M2 12h9"/></svg></button>
-        <button type="button" data-lay="just" aria-label="Justified"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4h12M2 8h12M2 12h12"/></svg></button>
-        <button type="button" data-lay="right" aria-label="Align right"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4h12M7 8h7M5 12h9"/></svg></button>
-      </div>
     </div>
     <div class="rgrp">
       <nav aria-label="Sections">
@@ -512,10 +511,16 @@ html[data-lay="right"] footer.site .vb{text-align:left}
         <a href="#timeline" data-go="timeline"><span data-i18n="nav.timeline">Timeline</span></a>
         <a href="#gameplay" data-go="gameplay"><span data-i18n="nav.gameplay">Gameplay</span></a>
         <a href="#about" class="hide-s"><span data-i18n="nav.info">Info</span></a>
-        <a href="trailer.html"><span>Trailer</span></a>
+        <a href="#trailer" data-go="trailer"><span data-i18n="trl.h">Trailer</span></a>
       </nav>
     </div>
     <div class="endgrp">
+      <div class="lays" role="group" aria-label="Layout">
+        <button type="button" data-lay="left" aria-label="Align left"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4h12M2 8h7M2 12h9"/></svg></button>
+        <button type="button" data-lay="just" aria-label="Justified"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4h12M2 8h12M2 12h12"/></svg></button>
+        <button type="button" data-lay="right" aria-label="Align right"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4h12M7 8h7M5 12h9"/></svg></button>
+      </div>
+      <span class="vdiv"></span>
       <button class="ibtn dot" id="thBtn" type="button" aria-label="Dark mode"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5 19.5 12 12 19.5 4.5 12z"/></svg></button>
       <button class="ibtn star" id="menuBtn" type="button" aria-label="Customization" aria-expanded="false" aria-controls="cp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.00 2.60L14.00 9.85L21.51 9.51L15.23 13.65L17.88 20.69L12.00 16.00L6.12 20.69L8.77 13.65L2.49 9.51L10.00 9.85z"/></svg></button>
     </div>
@@ -696,7 +701,7 @@ const SLIDE_DIR = "zuilopez/afterrock/VI/slides";
    MENU = the sticky bar at the top · NOTCH = the strip at the top of the cover, under MENU
    UNDERCOVER (UC) = the row under the cover text (time, detail, FPS) · FOOTER = the noise strip and the credits at the bottom */
 const typeDef = o => Object.assign({fsrc:"def",font:"",wt:400,ls:0,ws:0,case:"none",size:100,al:"center",x:0,y:0,
-  col:{m:"theme",c1:"#ff6bd0",c2:"#22d3ee"}, neon:{on:false,glow:60,emit:40}, glass:{on:false,blur:8,tr:55,edge:false,blend:false}}, o);
+  col:{m:"theme",c1:"#ff6bd0",c2:"#22d3ee"}, neon:{on:false,glow:60,emit:40}, glass:{on:false,blur:8,tr:55,blend:false}}, o);
 const DEF = {
   v:25,
   lay:"just",
@@ -749,7 +754,7 @@ function migrate(o){
   if(o.cd){ ty.cd.al=o.cd.al; ty.cd.size=o.cd.size; ty.cd.days=o.cd.days; }
   if(f.date){ ty.date.size=f.date.size; ty.date.al=f.date.al; }
   if(fx.light){ const l=fx.light; [["game","title"],["cd","cd"],["date","date"]].forEach(([k,lk])=>{ ty[k].neon={on:!!(l.on&&l[lk]), glow:l.glow, emit:l.emit}; }); }
-  if(fx.text){ const t=fx.text; [["game","title"],["cd","cd"]].forEach(([k,tk])=>{ ty[k].glass={on:!!(t.on&&t[tk]), blur:t.blur, tr:t.tr, edge:t.edge, blend:t.blend}; }); }
+  if(fx.text){ const t=fx.text; [["game","title"],["cd","cd"]].forEach(([k,tk])=>{ ty[k].glass={on:!!(t.on&&t[tk]), blur:t.blur, tr:t.tr, blend:t.blend}; }); }
   n.type=ty;
   n.fx={}; ["tilt","radial","iris","path","pstr","pix","scan","heat"].forEach(k=>{ if(fx[k]) n.fx[k]=fx[k]; });
   if(fx.blur){ const b=fx.blur; n.fx.blur={on:b.on, amt:b.amt, noise:b.noise, ns:b.ns, anim:b.anim, mo:b.dir, mamt:b.damt, mang:b.dang!=null ? b.dang : (b.dd==="v"?90:0)}; }
@@ -763,7 +768,7 @@ function migrate(o){
   return n;
 }
 /* the site default: Luiz's preset from 21.10.2026 */
-const SITE = {"lay":"just","theme":"#ff6bd0","cover":{"ext":100,"g1":8.3,"g2":-0.25},"slide":{"every":300,"tr":"pan","dur":1.2,"dbi":160,"sti":2.6},"page":{"mode":"slide","color":"#1a1420","g1":"#2b1748","g2":"#0b1020","ga":160,"imgSrc":"cover","cover":13,"img":"","slideSrc":"cover","gh":"","every":300,"bf":{"dim":20,"blur":24,"scale":110,"ov":70,"pix":false,"ps":12,"pr":0}},"title":{"mode":"text","text":"GTA VI","img":""},"type":{"game":{"fsrc":"def","font":"","wt":900,"ls":0,"ws":0,"case":"uppercase","y":-6,"col":{"m":"theme","c1":"#ff6bd0","c2":"#22d3ee"},"al":"center","size":109,"neon":{"on":false,"glow":100,"emit":0},"glass":{"on":true,"blur":15,"tr":33,"edge":false,"blend":false}},"cd":{"fsrc":"def","font":"","wt":100,"ls":-5,"ws":-8,"case":"uppercase","y":9,"col":{"m":"solid","c1":"#f2f2f4","c2":"#ff6bd0"},"al":"justify","size":100,"days":true,"neon":{"on":false,"glow":100,"emit":0},"glass":{"on":false,"blur":15,"tr":33,"edge":false,"blend":false}},"date":{"fsrc":"def","font":"","wt":200,"ls":2,"ws":0,"case":"none","y":-5,"col":{"m":"theme","c1":"#ff6bd0","c2":"#22d3ee"},"size":60,"al":"center","neon":{"on":true,"glow":100,"emit":0}}},"fx":{"tilt":{"on":true,"blur":8,"band":42,"soft":52},"scan":{"on":true,"radar":true,"grid":false,"dots":false,"i":80,"size":52,"sweep":true},"heat":{"on":true,"amt":53,"h":110,"anim":false,"speed":100},"blur":{"on":true,"amt":16,"noise":true,"ns":100,"anim":false,"mo":true,"mamt":72,"mang":0},"order":["tilt","blur","scan","heat"]},"cap":{"fmt":"jpg","leak":true,"leakI":44,"burn":true,"burnC":"#ff6bd0","burnI":18,"noise":true,"noiseI":34,"glow":{"on":false,"i":60,"cm":"solid","c1":"#22d3ee","c2":"#a855f7"},"vig":{"on":false,"amt":55,"scale":100,"rot":0},"ab":{"on":false,"amt":4}},"sym":{"size":110},"uc":{"split":50,"tal":"left","dal":"right","text":"From Gang Thép Auto with love\nsince MMXXIV","fps":false},"footer":{"ct":true,"cc":true,"cu":false,"c1":"#ff6bd0","h":140,"i":45,"op":100,"wave":40,"nz":45,"sl":1,"blur":0,"anim":true,"spd":100},"ui":{"glass":35,"fel":"date"},"v":25};
+const SITE = {"lay":"just","theme":"#ff6bd0","cover":{"ext":100,"g1":8.3,"g2":-0.25},"slide":{"every":300,"tr":"pan","dur":1.2,"dbi":160,"sti":2.6},"page":{"mode":"slide","color":"#1a1420","g1":"#2b1748","g2":"#0b1020","ga":160,"imgSrc":"cover","cover":13,"img":"","slideSrc":"cover","gh":"","every":300,"bf":{"dim":20,"blur":24,"scale":110,"ov":70,"pix":false,"ps":12,"pr":0}},"title":{"mode":"text","text":"GTA VI","img":""},"type":{"game":{"fsrc":"def","font":"","wt":900,"ls":0,"ws":0,"case":"uppercase","y":-6,"col":{"m":"theme","c1":"#ff6bd0","c2":"#22d3ee"},"al":"center","size":109,"neon":{"on":false,"glow":100,"emit":0},"glass":{"on":true,"blur":15,"tr":33,"blend":false}},"cd":{"fsrc":"def","font":"","wt":100,"ls":-5,"ws":-8,"case":"uppercase","y":9,"col":{"m":"solid","c1":"#f2f2f4","c2":"#ff6bd0"},"al":"justify","size":100,"days":true,"neon":{"on":false,"glow":100,"emit":0},"glass":{"on":false,"blur":15,"tr":33,"blend":false}},"date":{"fsrc":"def","font":"","wt":200,"ls":2,"ws":0,"case":"none","y":-5,"col":{"m":"theme","c1":"#ff6bd0","c2":"#22d3ee"},"size":60,"al":"center","neon":{"on":true,"glow":100,"emit":0}}},"fx":{"tilt":{"on":true,"blur":8,"band":42,"soft":52},"scan":{"on":true,"radar":true,"grid":false,"dots":false,"i":80,"size":52,"sweep":true},"heat":{"on":true,"amt":53,"h":110,"anim":false,"speed":100},"blur":{"on":true,"amt":16,"noise":true,"ns":100,"anim":false,"mo":true,"mamt":72,"mang":0},"order":["tilt","blur","scan","heat"]},"cap":{"fmt":"jpg","leak":true,"leakI":44,"burn":true,"burnC":"#ff6bd0","burnI":18,"noise":true,"noiseI":34,"glow":{"on":false,"i":60,"cm":"solid","c1":"#22d3ee","c2":"#a855f7"},"vig":{"on":false,"amt":55,"scale":100,"rot":0},"ab":{"on":false,"amt":4}},"sym":{"size":110},"uc":{"split":50,"tal":"left","dal":"right","text":"From Gang Thép Auto with love\nsince MMXXIV","fps":false},"footer":{"ct":true,"cc":true,"cu":false,"c1":"#ff6bd0","h":140,"i":45,"op":100,"wave":40,"nz":45,"sl":1,"blur":0,"anim":true,"spd":100},"ui":{"glass":35,"fel":"date"},"v":25};
 deepMerge(DEF, SITE);
 /* new effects slot in next to their neighbours from the built-in list, so older orders keep working */
 const FX_BASE=["tilt","blur","radial","iris","path","pstr","pix","scan","heat"];
@@ -888,8 +893,8 @@ function dragOnCover(el, start, move){
 }
 dragOnCover(EL.symbol, e=>{ const r=EL.symbol.getBoundingClientRect(); return {dx:e.clientX-r.left, dy:e.clientY-r.top}; }, (d,e)=>{
   const c=cover.getBoundingClientRect(), r=EL.symbol.getBoundingClientRect();
-  S.sym.x=Math.round(clamp((e.clientX-d.dx-c.left)/Math.max(1,c.width-r.width),0,1)*1000)/10;
-  S.sym.y=Math.round(clamp((e.clientY-d.dy-c.top)/Math.max(1,c.height-r.height),0,1)*1000)/10; placeSym(); });
+  S.sym.x=Math.round(clamp((e.clientX-d.dx-c.left)/Math.max(1,c.width-r.width),0,1)*100);
+  S.sym.y=Math.round(clamp((e.clientY-d.dy-c.top)/Math.max(1,c.height-r.height),0,1)*100); placeSym(); });
 
 /* ================= layout + cover extend ================= */
 function applyLayout(){
@@ -1022,33 +1027,26 @@ const lgKeys={};
 function glassText(){
   TK.forEach(k=>{
     const el=TEL[k], g=S.type[k].glass; let ov=$("lgx-"+k);
-    if(!g.on){ if(ov) ov.remove(); $("lgh-"+k)?.remove(); lgKeys[k]=""; return; }
+    if(!g.on){ if(ov) ov.remove(); lgKeys[k]=""; return; }
     const cr=cover.getBoundingClientRect(), r=el.getBoundingClientRect();
-    const key=[el.textContent,Math.round(r.width),Math.round(r.height),Math.round(r.left-cr.left),Math.round(r.top-cr.top),g.blur,g.tr,g.edge,g.blend,S.ui.glass,el.style.fontSize].join("|");
+    const key=[el.textContent,Math.round(r.width),Math.round(r.height),Math.round(r.left-cr.left),Math.round(r.top-cr.top),g.blur,g.tr,g.blend,S.ui.glass,el.style.fontSize].join("|");
     if(key===lgKeys[k] && ov) return; lgKeys[k]=key;
     const Wd=Math.max(2,Math.round(r.width)), Hd=Math.max(2,Math.round(r.height)), dpr=Math.min(MOB?1.5:2,devicePixelRatio||1);
-    const mask=document.createElement("canvas"), hi=document.createElement("canvas"); [mask,hi].forEach(c=>{ c.width=Wd*dpr; c.height=Hd*dpr; });
-    const mx=mask.getContext("2d"), hx=hi.getContext("2d"); mx.scale(dpr,dpr); hx.scale(dpr,dpr);
+    const mask=document.createElement("canvas"); mask.width=Wd*dpr; mask.height=Hd*dpr;
+    const mx=mask.getContext("2d"); mx.scale(dpr,dpr);
     const parts = k==="game" ? [...ttl.querySelectorAll(".w")] : k==="cd" ? [cdD,cdT] : [hd];
     parts.forEach(sp=>{ const cs=getComputedStyle(sp), rr=sp.getBoundingClientRect(); let t=sp.textContent; if(cs.textTransform==="uppercase") t=t.toUpperCase();
-      const font=`${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-      [mx,hx].forEach(c=>{ c.font=font; c.textBaseline="alphabetic"; if("letterSpacing" in c) c.letterSpacing=cs.letterSpacing==="normal"?"0px":cs.letterSpacing; });
+      mx.font=`${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`; mx.textBaseline="alphabetic"; if("letterSpacing" in mx) mx.letterSpacing=cs.letterSpacing==="normal"?"0px":cs.letterSpacing;
       const tw=mx.measureText(t).width, inl=cs.display.startsWith("inline"), ta=cs.textAlign;
       let px=rr.left-r.left+(parseFloat(cs.paddingLeft)||0); if(!inl && ta==="center") px=rr.left-r.left+(rr.width-tw)/2; else if(!inl && (ta==="right"||ta==="end")) px=rr.right-r.left-tw;
-      const by=baseY(mx,t,rr.top-r.top,rr.height), fs=parseFloat(cs.fontSize);
-      mx.fillStyle="#000"; mx.fillText(t,px,by,inl?rr.width*1.02:undefined);
-      const gr=hx.createLinearGradient(px,rr.top-r.top,px+rr.width*.4,rr.bottom-r.top);
-      gr.addColorStop(0,"rgba(255,255,255,.85)"); gr.addColorStop(.5,"rgba(255,255,255,.12)"); gr.addColorStop(1,"rgba(255,255,255,.5)");
-      if(g.edge){ hx.lineWidth=Math.max(1,fs*.01); hx.strokeStyle=gr; hx.strokeText(t,px,by,inl?rr.width*1.02:undefined); } });
-    if(!ov){ ov=document.createElement("div"); ov.id="lgx-"+k; ov.className="lgx b"; cover.appendChild(ov); const h=document.createElement("div"); h.id="lgh-"+k; h.className="lgx h"; cover.appendChild(h); }
-    const hl=$("lgh-"+k);
-    [ov,hl].forEach(o=>{ o.style.left=(r.left-cr.left)+"px"; o.style.top=(r.top-cr.top)+"px"; o.style.width=Wd+"px"; o.style.height=Hd+"px"; });
+      mx.fillStyle="#000"; mx.fillText(t,px,baseY(mx,t,rr.top-r.top,rr.height),inl?rr.width*1.02:undefined); });
+    if(!ov){ ov=document.createElement("div"); ov.id="lgx-"+k; ov.className="lgx"; cover.appendChild(ov); }
+    Object.assign(ov.style,{left:(r.left-cr.left)+"px", top:(r.top-cr.top)+"px", width:Wd+"px", height:Hd+"px"});
     ov.style.webkitMaskImage=ov.style.maskImage=`url(${mask.toDataURL()})`;
     const gt=S.ui.glass/100, bl = g.blend ? Math.round((g.blur+4+gt*36)/2) : g.blur;
     ov.style.backdropFilter=ov.style.webkitBackdropFilter=`blur(${bl}px) saturate(1.4)`;
-    ov.style.opacity=(.35+glTr(g)/100*.65).toFixed(2); ov.classList.toggle("noedge", !g.edge);
+    ov.style.opacity=(.35+glTr(g)/100*.65).toFixed(2);
     ov.style.background = g.blend ? `rgba(14,13,20,${(0.97-gt*.8)*.55})` : "";
-    hl.style.backgroundImage=`url(${hi.toDataURL()})`;
   });
 }
 function baseY(ctx, t, top, h){ ctx.textBaseline="alphabetic"; const m=ctx.measureText(t), a=m.fontBoundingBoxAscent??m.actualBoundingBoxAscent, d=m.fontBoundingBoxDescent??m.actualBoundingBoxDescent; return top+(h-(a+d))/2+a; }
@@ -1056,7 +1054,7 @@ function baseY(ctx, t, top, h){ ctx.textBaseline="alphabetic"; const m=ctx.measu
 [[ttl,"game"],[hc,"cd"],[hd,"date"]].forEach(([el,k])=>dragOnCover(el, e=>{
   if(S.ui.fel!==k){ S.ui.fel=k; if(curTab==="page" && cpEl.dataset.built) buildPanel(); }
   return {x:e.clientX, y:e.clientY, ox:S.type[k].x||0, oy:S.type[k].y||0}; }, (d,e)=>{
-  const o=S.type[k]; o.x=Math.round(clamp(d.ox+(e.clientX-d.x)/cover.clientWidth*100,-100,100)); o.y=Math.round(clamp(d.oy+(e.clientY-d.y)/cover.clientHeight*100,-120,120)); applyY(); }));
+  const o=S.type[k]; o.x=Math.round(clamp(d.ox+(e.clientX-d.x)/cover.clientWidth*100,-100,100)); o.y=Math.round(clamp(d.oy+(e.clientY-d.y)/cover.clientHeight*100,-100,100)); applyY(); }));
 
 /* ================= cover effects =================
    The FX list is a layer stack like Photoshop: the top item is the top layer. Cover text always sits above every FX layer;
@@ -1510,7 +1508,8 @@ function applyGlass(){ const t=S.ui.glass/100, cp=$("cp"); cp.style.setProperty(
 const FONTS=["IBM Plex Mono","Share Tech Mono","JetBrains Mono","Space Grotesk","Archivo","Rajdhani","Orbitron","Plus Jakarta Sans","Poppins","Big Shoulders Display","Bebas Neue","Inter","Anton","Oswald"];
 const EVERY=()=>[[10,L("10 giây","10 sec")],[30,L("30 giây","30 sec")],[60,L("1 phút","1 min")],[300,L("5 phút","5 min")],[600,L("10 phút","10 min")]];
 const fld = (label, ctrl, cls="") => `<label class="f ${cls}"><span>${label}</span>${ctrl}</label>`;
-const rng = (k,l,min,max,step=1,u="") => `<div class="f rg"><span>${l}</span><span class="val"><b data-val="${k}"></b>${u}</span><input type="range" id="c_${k}" data-k="${k}" min="${min}" max="${max}" step="${step}" aria-label="${esc(l)}"></div>`;
+/* slider + an exact number box: type a value, or use the arrow keys to move one step (1 % for positions) */
+const rng = (k,l,min,max,step=1,u="") => `<div class="f rg"><span>${l}</span><span class="val"><input class="num" type="number" data-k="${k}" min="${min}" max="${max}" step="${step}" aria-label="${esc(l)}">${u}</span><input type="range" id="c_${k}" data-k="${k}" min="${min}" max="${max}" step="${step}" aria-label="${esc(l)}"></div>`;
 const seg = (k,l,opts) => `<div class="f"><span>${l}</span><div class="seg" data-seg="${k}">${opts.map(([v,t])=>`<button type="button" data-v="${v}">${t}</button>`).join("")}</div></div>`;
 const tog = (k,l) => `<label class="sw"><span>${l}</span><input type="checkbox" id="c_${k}" data-k="${k}"></label>`;
 const txt = (k,l,ph="") => fld(l, `<input type="text" id="c_${k}" data-k="${k}" placeholder="${esc(ph)}">`);
@@ -1536,7 +1535,7 @@ const TABS = () => { const on=L("Bật","On"), inten=L("Cường độ","Intensi
   +grp(L("Khoảng cách","Spacing"), rng("cover.g1","Game ↔ Countdown",-4,20,.1,"") + rng("cover.g2","Countdown ↔ Date",-3,10,.05,""))
   +grp("Symbol", tog("sym.show",L("Hiện","Show")) + sub("sym.show:true",
        `<div class="btns"><button type="button" class="btn" data-act="symImg">${L("Chọn ảnh…","Choose image…")}</button><button type="button" class="btn" data-act="symDef">${L("Về logo gốc","Default logo")}</button></div>`
-     + rng("sym.size",L("Kích thước","Size"),40,300,5,"%") + rng("sym.x","X",0,100,.5,"%") + rng("sym.y","Y",0,100,.5,"%")
+     + rng("sym.size",L("Kích thước","Size"),40,300,5,"%") + rng("sym.x","X",0,100,1,"%") + rng("sym.y","Y",0,100,1,"%")
      + `<div class="f"><span>${L("Căn nhanh","Quick")}</span><div class="seg ico" data-seg="sym.x">${icoBtn("0","left")+icoBtn("50","center")+icoBtn("100","right")}</div></div>`
      + seg("sym.cm",L("Màu","Color"),[["theme","Theme"],["solid","Solid"]]) + sub("sym.cm:solid", col("sym.c",L("Màu","Color")))
      + `<p class="hint">${L("Khi panel đang mở, kéo thả symbol ngay trên Cover. Ảnh tải lên nên là PNG nền trong.","While this panel is open, drag the symbol on the cover. Uploads work best as transparent PNGs.")}</p>`))
@@ -1545,23 +1544,25 @@ const TABS = () => { const on=L("Bật","On"), inten=L("Cường độ","Intensi
      + `<div class="btns"><a class="btn" href="https://github.com/zuilopez/afterrock/upload/main/VI/slides" target="_blank" rel="noopener">${L("Thêm ảnh trên GitHub ↗","Add images on GitHub ↗")}</a><a class="btn" href="https://github.com/zuilopez/afterrock/tree/main/VI/slides" target="_blank" rel="noopener">${L("Mở thư mục ↗","Open folder ↗")}</a></div>`)],
  ["page",L("Trang","Page"), ()=>{
    const k=TK.includes(S.ui.fel)?S.ui.fel:"game", p=`type.${k}`;
-   const typeBody = seg("ui.fel","",Object.entries(TNAME()))
+   /* Type: pick the text first, then its Glass Text Fx, Neon, then the font settings */
+   const typeBody = `<div class="f telf"><div class="seg tel" data-seg="ui.fel">${Object.entries(TNAME()).map(([v,t])=>`<button type="button" data-v="${v}">${t}</button>`).join("")}</div></div>`
+       + `<div class="tsub"><h6>Glass Text Fx</h6>${tog(`${p}.glass.on`,on) + sub(`${p}.glass.on:true`, rng(`${p}.glass.blur`,L("Độ mờ","Blur"),0,40,1,"px") + rng(`${p}.glass.tr`,L("Độ trong","Transparency"),0,100,1,"%")
+            + tog(`${p}.glass.blend`,"Blend with Transparency"))}
+          <p class="hint">${L("Chữ thành kính mờ, nhìn xuyên thấy nền phía sau. Blend with Transparency trộn thêm độ xuyên của panel CUSTOM.","The letters turn to frosted glass and show the background through them. Blend with Transparency mixes in the CUSTOM panel's transparency.")}</p></div>`
+       + `<div class="tsub"><h6>Neon</h6>${tog(`${p}.neon.on`,on) + sub(`${p}.neon.on:true`, rng(`${p}.neon.glow`,"Glow",0,100) + rng(`${p}.neon.emit`,"Emission",0,100))}</div>`
+       + `<div class="tsub"><h6>Font</h6>`
        + seg(`${p}.fsrc`,"Font",[["def",L("Mặc định","Default")],["g","Google"],["local",L("Thêm","Add")]])
        + sub(`${p}.fsrc:g`, gfont(`${p}.font`,"Google Font"))
        + sub(`${p}.fsrc:local`, `<div class="btns"><button type="button" class="btn" data-act="font:${k}">${L("Chọn file font…","Choose font file…")}</button></div>`)
        + (k==="cd" ? tog("type.cd.days",L("Chỉ hiện ngày","Days only")) : "")
        + rng(`${p}.size`,L("Cỡ chữ","Size"),...(k==="game"?[30,160]:k==="cd"?[30,100]:[50,200]),1,"%")
        + rng(`${p}.wt`,L("Độ đậm","Weight"),100,900,100)
-       + rng(`${p}.x`,"X",-100,100,1,"%") + rng(`${p}.y`,"Y",-120,120,1,"%")
+       + rng(`${p}.x`,"X",-100,100,1,"%") + rng(`${p}.y`,"Y",-100,100,1,"%")
        + alico(`${p}.al`,"Align",k==="date"?["left","center","right"]:Object.keys(AICO))
        + seg(`${p}.col.m`,L("Màu","Color"),[["theme","Theme"],["solid","Solid"],["grad","Gradient"]]) + sub(`${p}.col.m:solid,grad`, col(`${p}.col.c1`,L("Màu 1","Color 1"))) + sub(`${p}.col.m:grad`, col(`${p}.col.c2`,L("Màu 2","Color 2")))
        + rng(`${p}.ls`,"Letter spacing",-50,180,1) + rng(`${p}.ws`,"Word spacing",-20,100,1)
        + seg(`${p}.case`,L("Kiểu chữ","Case"),[["none","As typed"],["uppercase","UPPERCASE"],["capitalize","Capitalize"]])
-       + `<p class="hint">${L("Kéo chữ ngay trên Cover để đổi X/Y; các nút Align là vị trí đặt nhanh.","Drag the text on the cover to change X/Y; the Align buttons are quick presets.")}</p>`
-       + `<div class="tsub"><h6>Neon</h6>${tog(`${p}.neon.on`,on) + sub(`${p}.neon.on:true`, rng(`${p}.neon.glow`,"Glow",0,100) + rng(`${p}.neon.emit`,"Emission",0,100))}</div>`
-       + `<div class="tsub"><h6>Glass Text Fx</h6>${tog(`${p}.glass.on`,on) + sub(`${p}.glass.on:true`, rng(`${p}.glass.blur`,L("Độ mờ","Blur"),0,40,1,"px") + rng(`${p}.glass.tr`,L("Độ trong","Transparency"),0,100,1,"%")
-            + tog(`${p}.glass.edge`,L("Viền sáng","Edge highlight")) + tog(`${p}.glass.blend`,"Blend with Transparency"))}
-          <p class="hint">${L("Chữ thành kính mờ, nhìn xuyên thấy nền phía sau. Blend with Transparency trộn thêm độ xuyên của panel CUSTOM.","The letters turn to frosted glass and show the background through them. Blend with Transparency mixes in the CUSTOM panel's transparency.")}</p></div>`;
+       + `<p class="hint">${L("Kéo chữ ngay trên Cover để đổi X/Y (từng 1 %); các nút Align là vị trí đặt nhanh. Ô số cạnh mỗi thanh gõ được giá trị chính xác.","Drag the text on the cover to change X/Y (1 % steps); the Align buttons are quick presets. The number box next to each slider takes an exact value.")}</p></div>`;
    return grp("Background", seg("page.mode",L("Kiểu","Mode"),[["default",L("Mặc định","Default")],["color",L("Màu","Color")],["gradient","Gradient"],["image",L("Ảnh","Image")],["slide","Slide"]]))
   +grp("", col("page.color",L("Màu","Color")), "page.mode:color")
   +grp("", col("page.g1",L("Màu 1","Color 1"))+col("page.g2",L("Màu 2","Color 2"))+rng("page.ga",L("Góc","Angle"),0,360,1,"°"), "page.mode:gradient")
@@ -1647,7 +1648,6 @@ function buildPanel(){
 function syncPanel(){
   const B=$("cpBody");
   B.querySelectorAll("[data-k]").forEach(el=>{ const v=getP(el.dataset.k); if(el.type==="checkbox") el.checked=!!v; else if(document.activeElement!==el) el.value=v; });
-  B.querySelectorAll("[data-val]").forEach(el=>{ el.textContent=getP(el.dataset.val); });
   B.querySelectorAll("[data-sk]").forEach(el=>{ const o=JSON.parse(el.dataset.opts), lb=JSON.parse(el.dataset.lbl), i=Math.max(0,o.indexOf(getP(el.dataset.sk))); el.value=i; const v=B.querySelector(`[data-sval="${el.dataset.sk}"]`); if(v) v.textContent=lb[i]; });
   B.querySelectorAll("input[type=range]").forEach(el=>{ const a=+el.min, b=+el.max; el.style.setProperty("--p", ((+el.value-a)/(b-a||1)*100).toFixed(1)+"%"); });
   B.querySelectorAll("[data-seg]").forEach(g=>{ const v=String(getP(g.dataset.seg)); g.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.v===v)); });
@@ -1678,7 +1678,7 @@ $("cpBody").addEventListener("input", e=>{
   if(e.target.dataset.sk){ const el=e.target; commit(el.dataset.sk, JSON.parse(el.dataset.opts)[+el.value]); return; }
   const el=e.target, k=el.dataset.k; if(!k) return;
   let v = el.type==="checkbox" ? el.checked : el.value;
-  if(el.type==="range" || (el.tagName==="SELECT" && typeof getP(k)==="number")) v=+v;
+  if(el.type==="range" || el.type==="number" || (el.tagName==="SELECT" && typeof getP(k)==="number")){ if(el.value==="") return; v=clamp(+v, +el.min, +el.max); }
   if(k==="fx.pstr.ang"){ v=snap45(v); el.value=v; }
   if(lazyText(k)){ setP(k,v); save(); return; }
   commit(k,v);
