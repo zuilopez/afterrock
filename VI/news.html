@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: one-column reading page — article first, then the other headlines as an index list */
-:root{--bg:#FBF8F6;--fg:#151116;--muted:#857A82;--line:#E6DEE1;--pink:#E5306B;--chip:#F2ECEE;--symf:invert(1) brightness(.15);
+:root{--bg:#FBF8F6;--fg:#151116;--muted:#857A82;--line:color-mix(in srgb,var(--fg) 13%,transparent);--pink:#E5306B;--chip:#F2ECEE;--symf:invert(1) brightness(.15);
   --display:"Archivo",Impact,"Arial Narrow",sans-serif;--body:"Archivo",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#110D13;--fg:#F3EDF0;--muted:#9A8E96;--line:#2A2229;--pink:#FF4F86;--chip:#1E1820;--symf:none;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#110D13;--fg:#F3EDF0;--muted:#9A8E96;--line:#2A2229;--pink:#FF4F86;--chip:#1E1820;--symf:none;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#110D13;--fg:#F3EDF0;--muted:#9A8E96;--line:color-mix(in srgb,var(--fg) 14%,transparent);--pink:#FF4F86;--chip:#1E1820;--symf:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#110D13;--fg:#F3EDF0;--muted:#9A8E96;--line:color-mix(in srgb,var(--fg) 14%,transparent);--pink:#FF4F86;--chip:#1E1820;--symf:none;color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -36,7 +36,11 @@ article{max-width:780px;margin:0 auto;padding-block:40px 20px}
 .im{aspect-ratio:16/9;max-width:100%;background:var(--chip) center/cover no-repeat;margin-bottom:22px}
 .meta{display:flex;justify-content:space-between;gap:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
 h1{font-family:var(--display);font-weight:800;font-stretch:76%;font-size:clamp(32px,5vw,56px);line-height:1;margin:14px 0 16px;text-wrap:balance}
-.sum{font-size:19px;max-width:62ch;margin:0 0 26px}
+.sum{font-size:19px;max-width:62ch;margin:0 0 18px}
+.kp{border-left:2px solid var(--pink);padding:4px 0 4px 16px;margin:0 0 26px}
+.kp h2{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);font-weight:500;margin:0 0 8px}
+.kp ul{margin:0;padding-left:18px}.kp li{margin:4px 0}
+.kp .at{color:var(--muted);font-size:13px;margin:10px 0 0}
 .go{display:inline-flex;gap:8px;align-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
   color:var(--bg);background:var(--fg);padding:12px 16px}
 .go:hover{background:var(--pink)}
@@ -80,7 +84,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offse
 const NEWS_RAW = "https://raw.githubusercontent.com/zuilopez/afterrock/main/VI/news.json";
 const SLIDES = ["01_UE_RIDEOUT_CUSTOMS_01","02_UE_RIDEOUT_CUSTOMS_02","03_UE_SAFEHOUSE_VEHICLES_02","04_UE_SARAS_SALON_01","05_UE_SARAS_SALON_02","06_UE_SQUALO_01","07_UE_SQUALO_04","08_UE_STOCK_305_01","09_UE_STOCK_305_02","10_UE_VAPID_BUGGY_01","11_UE_VAPID_BUGGY_03","12_UE_VAPID_BUGGY_04","13_UE_VAPID_GANADO_RETRO_BUILD_01","14_UE_VICE_CITY_STYLE_01","15_UE_VICE_CITY_STYLE_04","16_UE_VICE_CITY_STYLE_05","17_UE_WEAPON_VARIANTS_01","18_UE_WYMAN_CAR_COLLECTION_04","19_UE_WYMAN_CAR_COLLECTION_05","20_UE_WYMAN_CAR_COLLECTION_06","21_VV_PACK_01","22_VV_PACK_02","23_VV_PACK_EXCLUSIVE_LOOKS_03","24_VV_PACK_EXCLUSIVE_LOOKS_04","25_VV_PACK_VAPID_STANIER_01","26_VV_PACK_VAPID_STANIER_02","27_VV_PACK_VAPID_STANIER_03","28_VV_PACK_VAPID_STANIER_04","29_VV_WEAPON_PATTERN_01","30_Vice_City_01"].map(n=>"slides/"+n+".jpg");
 // same theme colour and light/dark choice as the VI page
-try{ const t=localStorage.getItem("vi_theme"); if(t) document.documentElement.dataset.theme=t; const st=JSON.parse((localStorage.getItem("vi_style_v8")||localStorage.getItem("vi_style_v7"))||"{}"); if(st.theme) document.documentElement.style.setProperty("--pink", st.theme); }catch(e){}
+try{ const t=localStorage.getItem("vi_theme"); if(t) document.documentElement.dataset.theme=t; const st=JSON.parse((localStorage.getItem("vi_style_v10")||localStorage.getItem("vi_style_v9"))||"{}"); if(st.theme) document.documentElement.style.setProperty("--pink", st.theme); }catch(e){}
 let LANG="en"; try{ LANG = localStorage.getItem("vi_lang")==="vi" ? "vi" : "en"; }catch(e){}
 const L=(vi,en)=>LANG==="vi"?vi:en;
 const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -112,6 +116,7 @@ function render(){
     <div class="meta mono"><span class="src">${esc(n.source)}</span><span>${fmt(n.date)}</span></div>
     <h1>${esc(n.title)}</h1>
     ${n.summary?`<p class="sum">${esc(n.summary)}</p>`:""}
+    ${(n.points||[]).length?`<div class="kp"><h2>${L("Thông tin chính","Key points")}</h2><ul>${n.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul><p class="at">${L("Chi tiết tại nguồn","Details at the source")}: <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.source)} ↗</a></p></div>`:""}
     <a class="go" href="${esc(n.url)}" target="_blank" rel="noopener">${L("Đọc toàn bộ tại","Read the full story at")} <span class="src">${esc(n.source)}</span> ↗</a>
     <p class="note">${L("Leonida Log chỉ tóm tắt và dẫn nguồn. Nội dung đầy đủ thuộc về trang gốc.","Leonida Log only summarises and links. The full story belongs to the original site.")}</p>`;
   const rest = NEWS.filter(x=>x!==n).slice(0,8);

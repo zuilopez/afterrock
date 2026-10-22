@@ -89,7 +89,7 @@ def parse_html(source, url, limit=6):
     base = re.match(r"https?://[^/]+", url).group(0)
     page = get(url).decode("utf-8", "ignore")
     links = []
-    for h in re.findall(r'href=["\']((?:%s)?/news/[a-z0-9-]+)["\']' % re.escape(base), page):
+    for h in re.findall(r'href=["\']((?:%s)?/news/[a-z0-9]+-[a-z0-9-]+)["\']' % re.escape(base), page):
         h = h if h.startswith("http") else base + h
         if h not in links:
             links.append(h)

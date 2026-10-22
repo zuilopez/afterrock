@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Bản đồ trang VI</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column of numbered map sheets; diagrams sit in bordered plates, tables scroll inside their own box */
+:root{
+  --bg:#FAF7F5; --fg:#17131A; --muted:#7D737B; --line:#E4DBDF; --plate:#FFFFFF; --pink:#D92D72; --pinkSoft:#FBE3EE;
+  --warn:#B4610E; --warnSoft:#FCEFD9; --ok:#14857F; --okSoft:#DDF3F1; --dead:#9B95A0; --deadSoft:#EFECEF;
+  --display:"Archivo",Impact,"Arial Narrow",sans-serif; --body:"Archivo",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#110D13;--fg:#F2ECEF;--muted:#9A8F98;--line:#2C242B;--plate:#18131A;--pink:#FF5C96;--pinkSoft:#3A1627;--warn:#F2A14B;--warnSoft:#3A2810;--ok:#3CC9C1;--okSoft:#10302E;--dead:#8A8390;--deadSoft:#221D24;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#110D13;--fg:#F2ECEF;--muted:#9A8F98;--line:#2C242B;--plate:#18131A;--pink:#FF5C96;--pinkSoft:#3A1627;--warn:#F2A14B;--warnSoft:#3A2810;--ok:#3CC9C1;--okSoft:#10302E;--dead:#8A8390;--deadSoft:#221D24;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin:0 auto;padding-block:40px 80px}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase}
+h1{font-family:var(--display);font-weight:850;font-stretch:72%;font-size:clamp(40px,7vw,76px);line-height:.92;margin:10px 0 14px;text-wrap:balance}
+h1 b{color:var(--pink);font-weight:850}
+.lede{max-width:66ch;color:var(--muted);margin:0 0 8px}
+h2{font-family:var(--display);font-weight:800;font-stretch:78%;font-size:clamp(24px,3.2vw,34px);line-height:1;margin:0;text-wrap:balance}
+section{border-top:1px solid var(--line);padding-top:26px;margin-top:44px}
+.sh{display:flex;gap:14px;align-items:baseline;margin-bottom:6px;flex-wrap:wrap}
+.sh .n{font-family:var(--mono);font-size:12px;color:var(--pink)}
+.why{color:var(--muted);max-width:70ch;margin:6px 0 18px}
+p{max-width:70ch}
+code,.k{font-family:var(--mono);font-size:12px;background:var(--pinkSoft);color:var(--fg);padding:1px 5px;border-radius:3px;white-space:nowrap}
+.plate{background:var(--plate);border:1px solid var(--line);padding:18px;overflow-x:auto}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0 0;color:var(--muted);font-size:13px}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.sw{width:12px;height:12px;border-radius:2px;display:inline-block}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.stat{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 14px;min-width:0}
+.stat b{display:block;font-family:var(--display);font-weight:800;font-stretch:75%;font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:13px}
+
+/* tree */
+.tree{font-family:var(--mono);font-size:12.5px;line-height:1.75;min-width:640px}
+.tree ul{list-style:none;margin:0;padding-left:22px;border-left:1px dashed var(--line)}
+.tree>ul{border-left:0;padding-left:0}
+.tree li{position:relative}
+.tree li::before{content:"";position:absolute;left:-22px;top:.9em;width:16px;border-top:1px dashed var(--line)}
+.tree>ul>li::before{display:none}
+.tree .nm{font-weight:600}
+.tree .d{color:var(--muted)}
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:0 6px;border-radius:3px;margin-left:6px;vertical-align:1px}
+.t-auto{background:var(--okSoft);color:var(--ok)}
+.t-warn{background:var(--warnSoft);color:var(--warn)}
+.t-dead{background:var(--deadSoft);color:var(--dead)}
+.t-pink{background:var(--pinkSoft);color:var(--pink)}
+
+/* page skeleton */
+.page{display:grid;gap:6px;min-width:560px}
+.blk{border:1px solid var(--line);padding:10px 12px;display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:start;background:var(--bg)}
+.blk>b{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--pink)}
+.blk.cover{background:linear-gradient(160deg,var(--pinkSoft),var(--plate))}
+.blk ol{margin:0;padding-left:18px}
+.blk .sub{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:11px;border:1px solid var(--line);padding:2px 7px;border-radius:3px;background:var(--plate)}
+.over{border-style:dashed}
+
+/* layers */
+.stack{display:grid;gap:3px;min-width:560px}
+.ly{display:grid;grid-template-columns:52px 190px minmax(0,1fr) 120px;gap:10px;align-items:center;padding:7px 10px;border:1px solid var(--line);background:var(--plate);font-size:13.5px}
+.ly .z{font-family:var(--mono);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ly .nm{font-weight:650}
+.ly .how{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;text-align:right}
+.ly.fixed{background:var(--deadSoft)}
+.ly.text{border-color:var(--pink);background:var(--pinkSoft)}
+.ly.bd .how{color:var(--ok)} .ly.cp .how{color:var(--warn)} .ly.ov .how{color:var(--muted)}
+.sep{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;padding:6px 2px 2px}
+
+/* panel map */
+.pm{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.tab{border:1px solid var(--line);background:var(--plate)}
+.tab h3{margin:0;padding:9px 12px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between}
+.tab h3 span{color:var(--muted)}
+.tab ul{list-style:none;margin:0;padding:6px 12px 10px}
+.tab li{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.tab li:last-child{border-bottom:0}
+.tab li i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.bar{border:1px solid var(--line);background:var(--plate);padding:10px 12px;margin-bottom:10px;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px}
+.bar b{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pink);margin-right:4px}
+
+/* scatter */
+.scatter{display:grid;grid-template-columns:150px repeat(5,minmax(110px,1fr));min-width:760px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.scatter>div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 10px;font-size:13px;min-width:0}
+.scatter .h{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+.scatter .rowh{font-weight:700}
+.scatter .hit{background:var(--warnSoft)}
+.scatter .k{background:none;padding:0;color:var(--warn)}
+
+/* tables */
+.tbl{overflow-x:auto;border:1px solid var(--line);background:var(--plate)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:13.5px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.cnt{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.sev{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:3px;white-space:nowrap}
+.s-hi{background:var(--pinkSoft);color:var(--pink)}
+.s-md{background:var(--warnSoft);color:var(--warn)}
+.s-lo{background:var(--okSoft);color:var(--ok)}
+
+.ask{border:1px solid var(--pink);background:var(--pinkSoft);padding:14px 16px;margin-top:14px}
+.ask b{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pink)}
+.rules{counter-reset:r;list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.rules li{counter-increment:r;display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;border:1px solid var(--line);background:var(--plate);padding:10px 12px}
+.rules li::before{content:counter(r,decimal-leading-zero);font-family:var(--mono);color:var(--pink);font-size:13px}
+.foot{margin-top:50px;color:var(--muted);font-size:13px}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.top a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}.top a:hover{color:var(--pink)}
+.qa{display:grid;gap:10px}.qa div{border:1px solid var(--line);background:var(--plate);padding:12px 14px}.qa b{display:block;margin-bottom:4px}
+@media (max-width:600px){.blk{grid-template-columns:1fr}.ly{grid-template-columns:44px minmax(0,1fr)}.ly .how,.ly .d2{grid-column:2}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="mono top" style="color:var(--muted)"><span>afterrock / VI · v0.25 · 22.10.2026</span><a href="./">← VI</a></div>
+  <h1>Bản đồ trang <b>VI</b></h1>
+  <p class="lede">Trang gồm những gì, mỗi tuỳ chỉnh nằm ở đâu và chạm vào phần nào. Bản này đã khớp với cấu trúc mới của v0.25: mỗi chữ trên Cover chỉnh ở một chỗ, tên trong code trùng tên bạn gọi. Mở trang này bằng cách bấm số version ở FOOTER.</p>
+
+  <section>
+    <div class="sh"><span class="n">01</span><h2>Lượng kỹ thuật</h2></div>
+    <p class="why">Trang chính vẫn là một file. Số đếm trực tiếp từ code v0.25.</p>
+    <div class="stats">
+      <div class="stat"><b>177 KB</b><span>mã nguồn trang chính (chưa tính logo)</span></div>
+      <div class="stat"><b>126 KB</b><span>JavaScript</span></div>
+      <div class="stat"><b>40 KB</b><span>CSS · 448 quy tắc</span></div>
+      <div class="stat"><b>90</b><span>hàm JS có tên</span></div>
+      <div class="stat"><b>9</b><span>lớp FX xếp được</span></div>
+      <div class="stat"><b>6</b><span>filter Capture, luôn nằm trên cùng</span></div>
+      <div class="stat"><b>4</b><span>tab CUSTOM: Cover · Page · Effects · Capture</span></div>
+      <div class="stat"><b>4</b><span>trang: chính, tin tức, trailer, bản đồ</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">02</span><h2>Hệ thống file và dữ liệu</h2></div>
+    <p class="why">Mình sửa ở bản nháp, build ra repo rồi mới đẩy lên GitHub Pages.</p>
+    <div class="plate"><div class="tree"><ul>
+      <li><span class="nm">Bản nháp của Claude</span> <span class="d">(máy cloud)</span>
+        <ul>
+          <li>vi-wiki.tpl.html <span class="d">· mã nguồn trang chính</span></li>
+          <li>news.tpl.html, trailer.tpl.html, vi-map.html <span class="d">· 3 trang phụ</span></li>
+          <li>build.py <span class="d">· gắn logo rồi ghi ra repo</span></li>
+        </ul></li>
+      <li><span class="nm">Repo zuilopez/afterrock</span>
+        <ul>
+          <li>VI/index.html · VI/news.html · VI/trailer.html · VI/map.html</li>
+          <li>VI/news.json <span class="d">· tối đa 300 tin, có thêm mục "Thông tin chính"</span> <span class="tag t-auto">tự cập nhật mỗi sáng</span></li>
+          <li>VI/slides/ <span class="d">· ảnh nền Cover</span></li>
+          <li>scripts/fetch_news.py + .github/workflows/news.yml <span class="d">· bot lấy tin</span></li>
+          <li>VI/goals.json <span class="d">· Goal đã bỏ, file không còn được đọc</span> <span class="tag t-dead">bạn xoá được</span></li>
+        </ul></li>
+      <li><span class="nm">Trình duyệt người xem</span>
+        <ul><li>vi_style_v10 <span class="d">· cài đặt</span>, vi_presets_v1, vi_default_v1, vi_fonts_v1, vi_lang, vi_theme, vi_tab</li>
+          <li>vi_style_v9 <span class="d">· chỉ đọc một lần để chuyển sang tên mới</span></li></ul></li>
+    </ul></div></div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">03</span><h2>Thứ bậc thông tin trang chính</h2></div>
+    <p class="why">Từ trên xuống, đúng thứ tự người xem gặp. Bốn tên vùng dưới đây là tên cố định, dùng cả trong panel lẫn trong code.</p>
+    <div class="plate"><div class="page">
+      <div class="blk"><b>MENU</b><div class="sub"><span class="chip">Logo afterrock / VI</span><span class="chip">3 icon layout</span><span class="chip">News · Timeline · Gameplay · Info · Trailer</span><span class="chip">◆ sáng/tối</span><span class="chip">☆ mở CUSTOM</span></div></div>
+      <div class="blk cover"><b>Cover</b><div><ol>
+        <li><b>NOTCH</b>: dải trên cùng của Cover, ngay dưới MENU (nháy đúp để mở CUSTOM)</li>
+        <li><b>Symbol</b>: logo, kéo thả</li>
+        <li><b>Game</b> · <b>Countdown</b> · <b>Date</b>: kéo thả khi panel mở</li>
+      </ol><div class="sub" style="margin-top:8px"><span class="chip">slide nền + 6 kiểu chuyển cảnh</span><span class="chip">9 lớp FX + 6 filter</span></div></div></div>
+      <div class="blk"><b>UNDERCOVER (UC)</b><div class="sub"><span class="chip">Time</span><span class="chip">Detail</span><span class="chip">FPS</span><span class="chip">khi Extend: nằm trong Cover, chữ không bao giờ đè lên</span></div></div>
+      <div class="blk"><b>Body</b><div class="sub"><span class="chip">News</span><span class="chip">Timeline (16 mốc)</span><span class="chip">Gameplay</span><span class="chip">Trailer (4)</span></div></div>
+      <div class="blk"><b>Game info</b><div class="sub"><span class="chip">7 ô</span></div></div>
+      <div class="blk"><b>FOOTER</b><div class="sub"><span class="chip">dải noise</span><span class="chip">dòng miễn trừ</span><span class="chip">version → trang này</span></div></div>
+    </div></div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">04</span><h2>Ngăn xếp lớp của Cover</h2></div>
+    <p class="why">Trên cùng là lớp nằm trên. Phần giữa kéo đổi chỗ được trong tab Effects. Chữ luôn nằm trên mọi lớp FX, vì lớp "Text" đã bỏ.</p>
+    <div class="plate"><div class="stack">
+      <div class="sep">Cố định ở trên</div>
+      <div class="ly fixed ov"><span class="z">+8</span><span class="nm">Filter Capture</span><span class="d2">Glow · Chromatic aberration · Vignette · Light leak · Color burn · Noise</span><span class="how">phủ cả chữ</span></div>
+      <div class="ly fixed ov"><span class="z">+6</span><span class="nm">Symbol · UC</span><span class="d2">UC chỉ nằm trong Cover khi Extend</span><span class="how">nội dung</span></div>
+      <div class="ly text"><span class="z">+3</span><span class="nm">Chữ</span><span class="d2">Game, Countdown, Date, kèm Neon và Glass Text Fx của từng chữ</span><span class="how">nội dung</span></div>
+      <div class="sep">Xếp được (tab Effects)</div>
+      <div class="ly bd"><span class="z">−1…</span><span class="nm">Tilt-shift · Blur · Iris</span><span class="d2">Blur có Intensity, Random noise, Motion blur</span><span class="how">làm mờ phía sau</span></div>
+      <div class="ly cp"><span class="z"></span><span class="nm">Radial · Path · Pixel stretch · Pixelize</span><span class="d2">dựng lại từ ảnh nền</span><span class="how">chỉ ảnh nền</span></div>
+      <div class="ly ov"><span class="z"></span><span class="nm">Scan</span><span class="d2">Radar · Grid · Dotted · Circle + vệt quét</span><span class="how">phủ hình</span></div>
+      <div class="ly bd"><span class="z">…−9</span><span class="nm">Heat wave</span><span class="d2">méo sóng ở đáy, có màu, độ mờ, blur</span><span class="how">làm méo phía sau</span></div>
+      <div class="sep">Cố định ở dưới</div>
+      <div class="ly fixed ov"><span class="z">−20</span><span class="nm">Ảnh nền Cover</span><span class="d2">kèm Motion blur bên trong</span><span class="how">ảnh</span></div>
+    </div>
+    <div class="legend"><span><i class="sw" style="background:var(--ok)"></i>Làm mờ / méo phía sau: tác động lên mọi lớp nằm dưới</span><span><i class="sw" style="background:var(--warn)"></i>Chỉ ảnh nền: dựng lại từ ảnh, không mang theo lớp khác</span><span><i class="sw" style="background:var(--muted)"></i>Phủ: vẽ thêm lên trên</span></div></div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">05</span><h2>Panel CUSTOM</h2></div>
+    <p class="why">Đầu panel: vie | eng (trái) · Lưu · Tải · Reset · Ghim · Đóng. Ba thanh luôn hiện: Transparency · Extend · Theme. Bốn tab dàn đều.</p>
+    <div class="pm">
+      <div class="tab"><h3>Cover</h3><ul><li>Title<i>chữ / ảnh</i></li><li>Khoảng cách<i>2</i></li><li>Symbol<i>cỡ, X, Y, màu, kéo thả</i></li><li>Undercover (UC)<i>chia cột, Time, Detail, FPS</i></li><li>Slide ảnh<i>5</i></li></ul></div>
+      <div class="tab"><h3>Page</h3><ul><li>Background + Hiệu ứng nền</li><li>Type<i>chọn chữ trước: Font · Cỡ · Đậm · X/Y · Align · Màu · giãn chữ · Neon · Glass Text Fx</i></li><li>Footer</li></ul></div>
+      <div class="tab"><h3>Effects</h3><ul><li>Độ nặng + FPS</li><li>9 lớp xếp được, mỗi lớp có số độ nặng</li></ul></div>
+      <div class="tab"><h3>Capture</h3><ul><li>Định dạng</li><li>Filter: Glow · Aberration · Vignette · Leak · Burn · Noise</li><li>Chụp Cover → khung crop mở sẵn trên Cover</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">06</span><h2>Một chữ, một chỗ chỉnh</h2></div>
+    <p class="why">Trước v0.25 mỗi chữ rải ở 4 nhóm và 7 tên trong code. Giờ mỗi chữ là một khối <code>type.&lt;chữ&gt;</code>.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Chữ</th><th>Nội dung</th><th>Mọi tuỳ chỉnh còn lại</th><th>Trong code</th></tr></thead>
+      <tbody>
+        <tr><td>Game</td><td>Cover › Title</td><td>Page › Type › Game</td><td><code>title</code> + <code>type.game</code></td></tr>
+        <tr><td>Countdown</td><td>tự chạy</td><td>Page › Type › Countdown (kèm Chỉ hiện ngày)</td><td><code>type.cd</code></td></tr>
+        <tr><td>Date</td><td>cố định 19/11/2026</td><td>Page › Type › Date</td><td><code>type.date</code></td></tr>
+        <tr><td>Symbol</td><td>Cover › Symbol</td><td>Cover › Symbol</td><td><code>sym</code> (cỡ là <code>sym.size</code>)</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">07</span><h2>Từ điển tên gọi</h2></div>
+    <p class="why">Tên bạn gọi và tên trong code, đã khớp nhau.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Bạn gọi</th><th>Trong code</th><th>Tên cũ (đã bỏ)</th></tr></thead>
+      <tbody>
+        <tr><td>MENU</td><td><code>#menu</code></td><td>header, hdr</td></tr>
+        <tr><td>NOTCH</td><td><code>#notch</code></td><td>chead, Header zone</td></tr>
+        <tr><td>UNDERCOVER (UC)</td><td><code>uc.*</code>, <code>#uc</code></td><td>Lower, low, fal, from, fps, rowDown</td></tr>
+        <tr><td>Detail</td><td><code>uc.text</code></td><td>from</td></tr>
+        <tr><td>FOOTER</td><td><code>footer.*</code>, <code>#footer</code>, <code>#ffx</code></td><td>Footer FX, ffx</td></tr>
+        <tr><td>Type</td><td><code>type.game | cd | date</code></td><td>font, fcol, ty, tx, title.al/size, cd.*</td></tr>
+        <tr><td>Neon</td><td><code>type.&lt;chữ&gt;.neon</code></td><td>Light-on, fx.light</td></tr>
+        <tr><td>Glass Text Fx</td><td><code>type.&lt;chữ&gt;.glass</code></td><td>Mica text, fx.text, lớp mica</td></tr>
+        <tr><td>Symbol</td><td><code>sym.x · sym.y · sym.size</code></td><td>sym.sx, sym.sy, hdr.size, zone.*</td></tr>
+        <tr><td>Motion blur</td><td><code>fx.blur.mo · mamt · mang</code></td><td>dir, damt, dang, dd</td></tr>
+        <tr><td>Filter Capture</td><td><code>cap.glow · cap.vig · cap.ab</code></td><td>fx.glow, fx.vig, fx.ab</td></tr>
+        <tr><td>select</td><td>hàng nút, chọn một</td><td>—</td></tr>
+        <tr><td>multi-select</td><td>chip, chọn nhiều</td><td>—</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">08</span><h2>Đã dọn trong v0.25</h2></div>
+    <div class="tbl"><table>
+      <thead><tr><th>Phần</th><th>Trạng thái</th></tr></thead>
+      <tbody>
+        <tr><td>Filter SVG <code>lqg</code>, <code>lqT</code>; CSS popup Trailer, <code>.tools</code>, <code>.lang</code>; mặt trăng/mặt trời</td><td>Đã xoá</td></tr>
+        <tr><td>Film frame (<code>ffrL</code>, <code>cap.frame</code>, khối <code>if(false)</code>)</td><td>Đã xoá</td></tr>
+        <tr><td><code>font.name</code> và các biến <code>--n*</code>, <code>zone.*</code>, <code>blur.dd</code>, <code>effAl</code>, <code>ZOPT</code>, <code>AL4</code>, <code>noiseURI</code>, <code>rdAuto</code></td><td>Đã xoá</td></tr>
+        <tr><td>Goal (tab, code, đọc goals.json)</td><td>Đã xoá; file goals.json còn trong repo</td></tr>
+        <tr><td>Lớp Text, lớp Mica, mục Neon trong Effects</td><td>Chuyển vào Page › Type</td></tr>
+        <tr><td>Đọc vi_style_v7, v8</td><td>Bỏ; v9 được chuyển một lần sang v10</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">09</span><h2>Lỗi đã lặp lại</h2></div>
+    <div class="tbl"><table>
+      <thead><tr><th>Kiểu lỗi</th><th>Cách chặn từ v0.25</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sev s-hi">Trùng tên</span></td><td>Tên vùng cố định (MENU, NOTCH, UC, FOOTER); quét biến không dùng trước mỗi bản</td></tr>
+        <tr><td><span class="sev s-hi">Mất cài đặt khi nâng bản</span></td><td>Một hàm <code>migrate()</code> cho cài đặt đã lưu, preset, cài đặt dán vào</td></tr>
+        <tr><td><span class="sev s-hi">Đổi qua đổi lại vị trí</span></td><td>Bảng 06 + 07 là quy tắc cố định</td></tr>
+        <tr><td><span class="sev s-md">Capture không giống màn hình</span></td><td>Hai ô màu nháy ở góc Cover để tìm đúng vùng, kể cả khi chia sẻ cả cửa sổ hoặc màn hình</td></tr>
+        <tr><td><span class="sev s-md">Đã sửa nhưng chưa thấy</span></td><td>Mỗi lần trả lời ghi rõ bản trên GitHub</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">10</span><h2>Đã chốt</h2></div>
+    <div class="qa">
+      <div><b>Lớp Text là gì?</b>Là một mục trong danh sách lớp, cho phép đặt hiệu ứng lên trên chữ. Đã bỏ: chữ luôn nằm trên mọi lớp FX, chỉ filter Capture phủ lên chữ.</div>
+      <div><b>Bốn lớp "chỉ ảnh nền"</b>Radial, Path, Pixel stretch, Pixelize đúng là hiệu ứng trên Cover. "Chỉ ảnh nền" nghĩa là chúng chụp lại ảnh nền rồi xử lý bản sao đó, nên lớp nằm dưới (ví dụ Scan) không bị kéo theo. Muốn như Photoshop thật phải chụp cả Cover mỗi khung hình, rất nặng, nên giữ cách hiện tại.</div>
+      <div><b>Glass Text Fx khác Mica / độ xuyên panel?</b>Mica text và Glass Text là một hiệu ứng, nay gộp thành Glass Text Fx. Độ xuyên (Transparency) là của panel CUSTOM; Glass Text Fx chỉ mượn nó khi bật Blend with Transparency.</div>
+      <div><b>Vị trí chữ</b>Align là vị trí đặt nhanh, X/Y là tinh chỉnh. Khi panel mở thì kéo chữ ngay trên Cover, không hiện viền.</div>
+      <div><b>Dung lượng file</b>Khoảng 180 KB là nhẹ với tốc độ tải. Thứ làm trang nặng là hiệu ứng chạy lúc xem, nên có đồng hồ Độ nặng + FPS trong tab Effects. Đề xuất trần mềm 250 KB; vượt mức đó thì tách CSS/JS ra file riêng cho dễ sửa.</div>
+    </div>
+  </section>
+
+  <p class="foot">Số liệu đếm từ v0.25.</p>
+</div>
+
+</body>
+</html>

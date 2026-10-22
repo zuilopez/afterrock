@@ -29,22 +29,18 @@
       "summary": ""
     },
     {
-      "id": "gta-vi-official-news-rumors-leaks-and-opinions-2026-10-21",
-      "title": "GTA VI Official News, Rumors, Leaks and Opinions",
-      "source": "GTAVice.net",
-      "url": "https://www.gtavice.net/news/game",
-      "date": "2026-10-21T01:32:50Z",
-      "image": "https://www.gtavice.net/content/images/large/gta-vi-trailer-1-2528.jpg",
-      "summary": "Grand Theft Auto VI Official News, Rumors, Leaks and Opinions from our experienced team of writers."
-    },
-    {
       "id": "rockstar-games-reveals-gta-vi-launch-trailer-2026-10-21",
       "title": "Rockstar Games Reveals GTA VI Launch Trailer",
       "source": "GTAVice.net",
       "url": "https://www.gtavice.net/news/rockstar-games-reveals-gta-vi-launch-trailer",
       "date": "2026-10-21T01:32:49Z",
       "image": "https://www.gtavice.net/content/images/large/gta-vi-launch-trailer-artwork.jpg",
-      "summary": "After a busy few weeks in Miami with GTA VI's marketing increasing on a daily basis, Rockstar Games finally unveiled the game's latest trailer, 5 weeks out from launch."
+      "summary": "After a busy few weeks in Miami with GTA VI's marketing increasing on a daily basis, Rockstar Games finally unveiled the game's latest trailer, 5 weeks out from launch.",
+      "points": [
+        "The fourth official trailer went up on 15 October, about five weeks before launch.",
+        "It runs 1:29 and leans on Jason's backstory alongside in-game action.",
+        "Rockstar added a Newswire post and new artwork on the official site, the same art seen on a Brooklyn mural that week."
+      ]
     },
     {
       "id": "gta-6-playstation-worldwide-release-countdown-2026-10-21",
@@ -53,7 +49,12 @@
       "url": "https://www.gtavice.net/news/gta-6-playstation-worldwide-release-countdown",
       "date": "2026-10-21T01:32:46Z",
       "image": "https://www.gtavice.net/content/images/large/gtavi-trailer-2-november-19-2026.webp",
-      "summary": "Official PlayStation Store listings reveal the exact GTA 6 launch times across 63 countries and regions, beginning in New Zealand and progressing through 15 release windows across 19 hours."
+      "summary": "Official PlayStation Store listings reveal the exact GTA 6 launch times across 63 countries and regions, beginning in New Zealand and progressing through 15 release windows across 19 hours.",
+      "points": [
+        "The PS5 digital version unlocks region by region, between 11:00 UTC on 18 November and 06:00 UTC on 19 November.",
+        "New Zealand goes first, at midnight local time on 19 November.",
+        "A few countries still have no confirmed time, and the schedule covers PS5 digital only."
+      ]
     },
     {
       "id": "gtavice-beer-labels-2026-10-20",
@@ -62,7 +63,12 @@
       "url": "https://www.gtavice.net/news/exclusive-gta-6-beer-labels-for-piwasser-patriot-and-no-mames-vice-city-discovered-in-official-us-database",
       "date": "2026-10-20T10:27:00Z",
       "image": "https://www.gtavice.net/content/images/large/no-mames-vice-ccity-lager.png",
-      "summary": "Three beer labels that may be tied to GTA VI showed up in a US federal alcohol registry, all filed by a Florida brewery."
+      "summary": "Three beer labels that may be tied to GTA VI showed up in a US federal alcohol registry, all filed by a Florida brewery.",
+      "points": [
+        "Three GTA-style beer labels (Pißwasser, Patriot, No Mames Vice City) are listed in the US alcohol label registry.",
+        "All were filed by a brewery in Doral, Florida, and approved between late September and mid October 2026.",
+        "Rockstar hasn't announced a beer tie-in, so the link is unconfirmed."
+      ]
     },
     {
       "id": "khelnow-one-month-away-2026-10-19",
@@ -71,7 +77,12 @@
       "url": "https://khelnow.com/gaming/gta-6-launch-day-is-officially-one-month-away-202610",
       "date": "2026-10-19T06:35:00Z",
       "image": "https://assets.khelnow.com/news/uploads/2026/10/gta-2.jpg",
-      "summary": "With a month to go, pre-orders are open, pre-loading starts on November 12, and the Standard and Ultimate editions sit at $79.99 and $99.99."
+      "summary": "With a month to go, pre-orders are open, pre-loading starts on November 12, and the Standard and Ultimate editions sit at $79.99 and $99.99.",
+      "points": [
+        "One month to go until the 19 November launch.",
+        "Pre-loading starts 12 November.",
+        "Standard costs $79.99 and the Ultimate Edition $99.99."
+      ]
     },
     {
       "id": "gtavice-merch-scalpers-2026-10-19",
@@ -80,7 +91,12 @@
       "url": "https://www.gtavice.net/news/gta-vi-merch-scalpers-are-charging-up-to-2735-more-than-the-rockstar-store",
       "date": "2026-10-19T03:30:00Z",
       "image": "https://www.gtavice.net/content/images/large/gtavi-merch-header-banner.jpg",
-      "summary": "Resellers list official GTA VI merch on eBay far above retail, while some of the same items are still sold by Rockstar at the normal price."
+      "summary": "Resellers list official GTA VI merch on eBay far above retail, while some of the same items are still sold by Rockstar at the normal price.",
+      "points": [
+        "Rockstar's GTA VI merch went on sale on 8 October and many UK items sold out.",
+        "Resale listings on eBay ask many times the store price.",
+        "Some items are still sold by Rockstar at the normal price, so the article suggests waiting for restocks."
+      ]
     },
     {
       "id": "fox10-nov-19-locked-2026-10-16",
@@ -99,7 +115,12 @@
       "date": "2026-10-15T14:00:00Z",
       "image": "",
       "summary": "Rockstar released the launch trailer about a month before the game arrives on PS5 and Xbox Series X|S.",
-      "pin": true
+      "pin": true,
+      "points": [
+        "The Launch Trailer is out on Rockstar's YouTube channel.",
+        "GTA VI arrives 19 November 2026 on PS5 and Xbox Series X|S.",
+        "Pre-orders remain open on the official site."
+      ]
     },
     {
       "id": "yahoo-preorders-live-2026-10-15",
