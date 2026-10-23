@@ -88,8 +88,10 @@ body{transition:margin-right .35s cubic-bezier(.16,1,.3,1)}
 .uc .slot[data-al="left"]{text-align:left;align-items:flex-start}
 .uc .slot[data-al="center"]{text-align:center;align-items:center}
 .uc .slot[data-al="right"]{text-align:right;align-items:flex-end}
-.uc .slot[data-al="justify"]{align-items:stretch}
-.uc .slot[data-al="justify"] .el{text-align:justify;text-align-last:justify}
+.uc .el .ln{display:block}
+.uc .slot[data-al="justify"],.uc .slot[data-al="jleft"],.uc .slot[data-al="jright"]{align-items:stretch}
+.uc .slot[data-al="justify"] .ln,.uc .slot[data-al="jleft"] .ln,.uc .slot[data-al="jright"] .ln{text-align:justify;text-align-last:justify}
+.uc .slot[data-al="jleft"] .ln:last-child{text-align-last:left}.uc .slot[data-al="jright"] .ln:last-child{text-align-last:right}
 .el{font-size:12px;line-height:1.35;white-space:pre-line}
 .el.mono2{font-family:ui-monospace,Menlo,Consolas,"Courier New",monospace}
 .el sup{font-size:.68em;line-height:0}
@@ -104,8 +106,8 @@ html.cpopen .frame>.el.sym,html.cpopen .fin .ht,html.cpopen .hc,html.cpopen .hd{
   position:relative;overflow:hidden;isolation:isolate;color:var(--tx);background:#0b1020;container-type:inline-size;
   aspect-ratio:16/10;min-height:420px;max-width:100%;display:flex;flex-direction:column}
 .frame .lay{position:absolute;inset:0;pointer-events:none}
-.frame .bgi{z-index:-20;background:#0b1020 center/cover no-repeat;will-change:transform}
-.frame .bgi.old{z-index:-19}
+.frame .bgi{z-index:-40;background:#0b1020 center/cover no-repeat;will-change:transform}
+.frame .bgi.old{z-index:-39}
 .frame .fxb{z-index:-6}
 .frame .fxb.anim{animation:nbDrift 26s ease-in-out infinite alternate}
 .frame .bgi .dbc{position:absolute;left:50%;top:50%;width:var(--dd,150%);height:var(--dd,150%);transform:translate(-50%,-50%) rotate(var(--da,0deg));background-image:inherit;background-size:0 0;display:none;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
@@ -151,7 +153,9 @@ html.cpopen .frame>.el.sym,html.cpopen .fin .ht,html.cpopen .hc,html.cpopen .hd{
 .ht.hrow{column-gap:max(0px,var(--tws,0px))}
 .ht.hrow.al-left{justify-content:flex-start;column-gap:max(0px,calc(.22em + var(--tws,0px)))}.ht.hrow.al-center{justify-content:center;column-gap:max(0px,calc(.22em + var(--tws,0px)))}.ht.hrow.al-right{justify-content:flex-end;column-gap:max(0px,calc(.22em + var(--tws,0px)))}
 .ht.para{text-align:var(--tal,left)}
-.ht.para.al-justify{text-align:justify;text-align-last:justify}
+.ht.para .ln{display:block}
+.ht.para.al-justify .ln,.ht.para.al-jleft .ln,.ht.para.al-jright .ln{text-align:justify;text-align-last:justify}
+.ht.para.al-jleft .ln:last-child{text-align-last:left}.ht.para.al-jright .ln:last-child{text-align-last:right}
 .ht img{display:block;max-width:100%;height:calc(22cqw * var(--ts,1));width:auto;object-fit:contain}
 .ht.img.al-center img,.ht.img.al-justify img{margin:0 auto}.ht.img.al-right img{margin-left:auto}
 .hb{min-width:0;margin-top:var(--g1,8.3cqw);text-align:var(--cal,center)}
@@ -181,7 +185,7 @@ html.shooting #menu,html.shooting body::before{visibility:hidden}
 @media (prefers-reduced-motion:reduce){.frame .fxb.anim,.frame .bgi .dbc.anim,.frame .pixl.anim{animation:none!important}}
 .frame .abl{-webkit-backdrop-filter:url(#chab);backdrop-filter:url(#chab)}
 .frame .cnz{mix-blend-mode:overlay;opacity:var(--cni,.4);background-repeat:repeat}
-.frame.exth{aspect-ratio:auto}
+.frame.exth{aspect-ratio:auto;min-height:0}
 .hero.ext{padding:var(--xt,0px) 0 0!important;box-sizing:border-box}
 .hero.ext .uc{position:absolute;left:14px;right:14px;bottom:10px;z-index:6;margin:0;color:#f2f2f4}
 .hero.ext .fin{padding-bottom:calc(var(--ucH,40px) + 2.4cqw + 12px)}
@@ -408,6 +412,12 @@ html[data-lay="right"] footer.site .vb{text-align:left}
 #cp input.num::-webkit-inner-spin-button,#cp input.num::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 #cp input.num:hover,#cp input.num:focus{border-bottom-color:var(--pink);color:#f2f2f4;outline:0}
 #cp .f.rg{grid-template-columns:100px 52px minmax(0,1fr)}
+#cp details.pos{border:1px solid rgba(255,255,255,.1);border-radius:4px}
+#cp details.pos summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:8px;padding:7px 9px;color:#bdb7c6}
+#cp details.pos summary::-webkit-details-marker{display:none}
+#cp details.pos summary::before{content:"▸";color:var(--pink);margin-right:2px}#cp details.pos[open] summary::before{content:"▾"}
+#cp details.pos summary>span:first-child{flex:1}
+#cp details.pos .pbody{display:flex;flex-direction:column;gap:10px;padding:4px 9px 10px}
 #cp h6{margin:0;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#cfc9d8;font-weight:500}
 #cp .dh .st{width:6px;height:6px;border-radius:50%;border:1px solid #8e879a;flex:none}
 #cp .dh .st.on{background:var(--pink);border-color:var(--pink)}
@@ -592,7 +602,7 @@ html[data-lay="right"] footer.site .vb{text-align:left}
 
 <footer class="wrap site" id="footer">
   <p data-i18n="foot.p">Unofficial fan site, not affiliated with Rockstar Games or Take-Two Interactive. Game and character names belong to their owners.</p>
-  <div class="mono vb"><a id="verF" href="map.html"></a><span><span data-i18n="foot.up">Updated</span> 20.10.2026</span></div>
+  <div class="mono vb"><a id="verF" href="map.html"></a><span><span data-i18n="foot.up">Updated</span> <span id="updF"></span></span></div>
 </footer>
 <div class="ffx" id="ffx" aria-hidden="true"><div class="c" id="ffC"><div class="ci"></div><div class="nz"></div></div><div class="s" id="ffS"></div><div class="m a1"></div><div class="m a2"></div><div class="m a3"></div></div>
 <svg id="ffSvg" width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="ffWave" x="-5%" y="-30%" width="110%" height="160%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.004 0.022" numOctaves="3" seed="8" result="n"><animate attributeName="baseFrequency" dur="16s" values="0.004 0.022;0.006 0.034;0.004 0.022" repeatCount="indefinite"/></feTurbulence><feDisplacementMap id="ffD" in="SourceGraphic" in2="n" scale="40" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
@@ -602,7 +612,7 @@ html[data-lay="right"] footer.site .vb{text-align:left}
     <span class="phb"><button id="cpS" class="pbtn" type="button">Save</button><button id="cpL" class="pbtn" type="button" aria-expanded="false" aria-controls="pMenu">Load</button><button id="cpR" class="pbtn" type="button">Reset</button><button id="cpPin" type="button" aria-pressed="false" aria-label="Pin"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6l-1 5 3 3v2H7v-2l3-3zM12 14v6"/></svg></button><button id="cpX" type="button" aria-label="Close">✕</button></span></div>
   <div class="pmenu" id="pMenu" hidden></div>
   <div class="glassbar"><span id="glLbl">Transparency</span><b class="val" id="glassV"></b><input type="range" id="glassR" min="0" max="100" aria-label="Transparency"></div>
-  <div class="glassbar"><span id="exLbl">Extend</span><b class="val" id="extV"></b><input type="range" id="extR" min="0" max="100" aria-label="Extend cover"></div>
+  <div class="glassbar"><span id="exLbl">Extend</span><b class="val" id="extV"></b><input type="range" id="extR" min="-100" max="100" aria-label="Extend cover"></div>
   <div class="glassbar thb"><span id="thLbl">Theme</span><input type="color" id="thC" aria-label="Theme colour"><span class="sws" id="thSw"></span></div>
   <div class="tabs" role="tablist" id="cpTabs"></div>
   <div class="pb" id="cpBody"></div>
@@ -610,7 +620,8 @@ html[data-lay="right"] footer.site .vb{text-align:left}
 <div id="toast" role="status"></div>
 <script>
 const TARGET = new Date(2026,10,19,0,0,0);
-const VERSION = "v0.27";
+const VERSION = "v0.28";
+const BUILT = "23.10.2026";   // filled in by build.py with the build date, so the FOOTER always shows when this version was made
 const LOGO = "data:image/png;base64,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";
 const NEWS_RAW = "https://raw.githubusercontent.com/zuilopez/afterrock/main/VI/news.json";
 const W = "https://en.wikipedia.org/wiki/Grand_Theft_Auto_VI";
@@ -714,7 +725,7 @@ const DEF = {
     cd:typeDef({wt:100,case:"uppercase",days:false,col:{m:"solid",c1:"#f2f2f4",c2:"#ff6bd0"}}),
     date:typeDef({ls:30})
   },
-  slide:{every:300,tr:"pan",dur:1.2,dbi:160,sti:2.6},
+  slide:{every:300,tr:"random",dur:1.2,dbi:160,sti:2.6,max:40},
   fx:{
     tilt:{on:true,blur:15,band:18,soft:30},
     blur:{on:false,amt:10,i:100,noise:false,ns:100,anim:false,mo:false,mamt:40,mang:0},
@@ -725,7 +736,7 @@ const DEF = {
     pix:{on:false,size:16,amt:100,op:100,anim:false,spd:100},
     scan:{on:true,radar:true,grid:false,dots:false,circle:false,i:80,size:52,sweep:true,spd:100},
     heat:{on:true,amt:22,h:138,anim:true,speed:100,ct:true,cu:false,c1:"#22d3ee",i:27,op:100,blur:0},
-    order:["tilt","blur","radial","iris","path","pstr","pix","scan","heat"]
+    order:["text","tilt","blur","radial","iris","path","pstr","pix","scan","heat"]
   },
   sym:{show:true,src:"",cm:"solid",c:"#ffffff",x:56,y:3,size:100},
   uc:{split:50,tal:"left",dal:"right",tws:0,dws:0,text:"From Gang Thép Auto with love\nsince MMXXIV",fps:false},
@@ -735,7 +746,7 @@ const DEF = {
   cap:{fmt:"png",leak:false,leakI:60,burn:false,burnC:"#ff6bd0",burnI:35,noise:false,noiseI:40,
        glow:{on:false,i:60,cm:"grad",c1:"#22d3ee",c2:"#a855f7"},vig:{on:false,amt:55,scale:100,rot:0},ab:{on:false,amt:4}},
   footer:{ct:true,cc:true,cu:false,c1:"#ff6bd0",h:140,i:45,op:100,wave:40,nz:45,sl:1,blur:0,anim:true,spd:100},
-  ui:{glass:35,fel:"game"}
+  ui:{glass:35,fel:"game",cel:"title"}
 };
 const clone = o => JSON.parse(JSON.stringify(o));
 /* copy b into a, only for keys a already has (unknown or empty values are skipped) */
@@ -769,11 +780,11 @@ function migrate(o){
   return n;
 }
 /* the site default: Luiz's preset from 22.10.2026 */
-const SITE = {"v":25,"lay":"just","theme":"#ff6bd0","cover":{"ext":100,"g1":8.3,"g2":-0.55},"title":{"mode":"text","text":"GTA VI","img":""},"type":{"game":{"fsrc":"def","font":"","wt":900,"ls":-1,"ws":5,"case":"uppercase","size":129,"al":"justify","x":0,"y":-4,"col":{"m":"theme","c1":"#ff6bd0","c2":"#22d3ee"},"neon":{"on":false,"glow":24,"emit":40},"glass":{"on":true,"blur":8,"tr":54,"blend":false}},"cd":{"fsrc":"def","font":"","wt":100,"ls":-6,"ws":39,"case":"uppercase","size":78,"al":"center","x":0,"y":120,"col":{"m":"solid","c1":"#f2f2f4","c2":"#ff6bd0"},"neon":{"on":false,"glow":24,"emit":40},"glass":{"on":false,"blur":1,"tr":24,"blend":false},"days":true},"date":{"fsrc":"def","font":"","wt":100,"ls":14,"ws":0,"case":"none","size":50,"al":"right","x":0,"y":-1,"col":{"m":"theme","c1":"#ff6bd0","c2":"#22d3ee"},"neon":{"on":true,"glow":98,"emit":0},"glass":{"on":false,"blur":8,"tr":55,"blend":false}}},"slide":{"every":300,"tr":"pan","dur":1.2,"dbi":160,"sti":2.6},"fx":{"tilt":{"on":true,"blur":17,"band":30,"soft":36},"blur":{"on":true,"amt":11,"i":71,"noise":true,"ns":60,"anim":false,"mo":true,"mamt":28,"mang":0},"radial":{"on":false,"mode":"zoom","amt":30,"cx":50,"cy":50,"twist":0,"blend":35},"iris":{"on":false,"cx":50,"cy":50,"sc":45,"amt":14,"fo":35},"path":{"on":false,"pts":[],"spread":60,"amt":24,"curve":true},"pstr":{"on":false,"ang":0,"src":50,"x1":0,"x2":100,"y1":37,"y2":100,"fo":27,"blur":0,"noise":false,"ns":200},"pix":{"on":false,"size":16,"amt":100,"op":100,"anim":false,"spd":100},"scan":{"on":true,"radar":true,"grid":false,"dots":false,"circle":false,"i":100,"size":102,"sweep":false,"spd":105},"heat":{"on":true,"amt":42,"h":148,"anim":true,"speed":325,"ct":true,"cu":false,"c1":"#22d3ee","i":27,"op":100,"blur":0},"order":["tilt","blur","radial","iris","path","pix","scan","heat","pstr"]},"sym":{"show":true,"src":"","cm":"solid","c":"#ffffff","x":56,"y":1.5,"size":130},"uc":{"split":61,"tal":"left","dal":"left","tws":0,"dws":0,"text":"From Gang Thép Auto with love\nsince MMXXIV","fps":false},"page":{"mode":"slide","color":"#1a1420","g1":"#2b1748","g2":"#0b1020","ga":160,"imgSrc":"cover","cover":13,"img":"","slideSrc":"cover","gh":"","every":300,"bf":{"dim":20,"blur":24,"scale":110,"ov":70,"pix":false,"ps":12,"pr":0}},"cap":{"fmt":"png","leak":false,"leakI":5,"burn":true,"burnC":"#846bff","burnI":25,"noise":true,"noiseI":38,"glow":{"on":false,"i":63,"cm":"solid","c1":"#22d3ee","c2":"#a855f7"},"vig":{"on":false,"amt":55,"scale":100,"rot":0},"ab":{"on":false,"amt":2}},"footer":{"ct":true,"cc":true,"cu":false,"c1":"#ff6bd0","h":170,"i":56,"op":73,"wave":81,"nz":83,"sl":1,"blur":4,"anim":true,"spd":205},"ui":{"glass":63,"fel":"date"}};
+const SITE = {"v":25,"lay":"just","theme":"#ff6bd0","cover":{"ext":100,"g1":8.3,"g2":-0.55},"title":{"mode":"text","text":"GTA VI","img":""},"type":{"game":{"fsrc":"def","font":"","wt":900,"ls":-1,"ws":5,"case":"uppercase","size":129,"al":"justify","x":0,"y":-4,"col":{"m":"theme","c1":"#ff6bd0","c2":"#22d3ee"},"neon":{"on":false,"glow":24,"emit":40},"glass":{"on":true,"blur":8,"tr":54,"blend":false}},"cd":{"fsrc":"def","font":"","wt":100,"ls":-6,"ws":39,"case":"uppercase","size":78,"al":"center","x":0,"y":120,"col":{"m":"solid","c1":"#f2f2f4","c2":"#ff6bd0"},"neon":{"on":false,"glow":24,"emit":40},"glass":{"on":false,"blur":1,"tr":24,"blend":false},"days":true},"date":{"fsrc":"def","font":"","wt":100,"ls":14,"ws":0,"case":"none","size":50,"al":"right","x":0,"y":-1,"col":{"m":"theme","c1":"#ff6bd0","c2":"#22d3ee"},"neon":{"on":true,"glow":98,"emit":0},"glass":{"on":false,"blur":8,"tr":55,"blend":false}}},"slide":{"every":300,"tr":"random","dur":1.2,"dbi":160,"sti":2.6},"fx":{"tilt":{"on":true,"blur":17,"band":30,"soft":36},"blur":{"on":true,"amt":11,"i":71,"noise":true,"ns":60,"anim":false,"mo":true,"mamt":28,"mang":0},"radial":{"on":false,"mode":"zoom","amt":30,"cx":50,"cy":50,"twist":0,"blend":35},"iris":{"on":false,"cx":50,"cy":50,"sc":45,"amt":14,"fo":35},"path":{"on":false,"pts":[],"spread":60,"amt":24,"curve":true},"pstr":{"on":false,"ang":0,"src":50,"x1":0,"x2":100,"y1":37,"y2":100,"fo":27,"blur":0,"noise":false,"ns":200},"pix":{"on":false,"size":16,"amt":100,"op":100,"anim":false,"spd":100},"scan":{"on":true,"radar":true,"grid":false,"dots":false,"circle":false,"i":100,"size":102,"sweep":false,"spd":105},"heat":{"on":true,"amt":42,"h":148,"anim":true,"speed":325,"ct":true,"cu":false,"c1":"#22d3ee","i":27,"op":100,"blur":0},"order":["tilt","blur","radial","iris","path","pix","scan","heat","pstr"]},"sym":{"show":true,"src":"","cm":"solid","c":"#ffffff","x":56,"y":1.5,"size":130},"uc":{"split":61,"tal":"left","dal":"left","tws":0,"dws":0,"text":"From Gang Thép Auto with love\nsince MMXXIV","fps":false},"page":{"mode":"slide","color":"#1a1420","g1":"#2b1748","g2":"#0b1020","ga":160,"imgSrc":"cover","cover":13,"img":"","slideSrc":"cover","gh":"","every":300,"bf":{"dim":20,"blur":24,"scale":110,"ov":70,"pix":false,"ps":12,"pr":0}},"cap":{"fmt":"png","leak":false,"leakI":5,"burn":true,"burnC":"#846bff","burnI":25,"noise":true,"noiseI":38,"glow":{"on":false,"i":63,"cm":"solid","c1":"#22d3ee","c2":"#a855f7"},"vig":{"on":false,"amt":55,"scale":100,"rot":0},"ab":{"on":false,"amt":2}},"footer":{"ct":true,"cc":true,"cu":false,"c1":"#ff6bd0","h":170,"i":56,"op":73,"wave":81,"nz":83,"sl":1,"blur":4,"anim":true,"spd":205},"ui":{"glass":63,"fel":"date"}};
 
 deepMerge(DEF, SITE);
 /* new effects slot in next to their neighbours from the built-in list, so older orders keep working */
-const FX_BASE=["tilt","blur","radial","iris","path","pstr","pix","scan","heat"];
+const FX_BASE=["text","tilt","blur","radial","iris","path","pstr","pix","scan","heat"];
 function fillOrder(o){ o=o.filter(k=>FX_BASE.includes(k)); FX_BASE.forEach((k,i)=>{ if(o.includes(k)) return; let at=0; for(let j=i-1;j>=0;j--){ const p=o.indexOf(FX_BASE[j]); if(p>=0){ at=p+1; break; } } o.splice(at,0,k); }); return o; }
 DEF.fx.order=fillOrder(DEF.fx.order);
 const SKEY="vi_style_v10", OLDKEY="vi_style_v9", FKEY="vi_fonts_v1", DKEY="vi_default_v1", PKEY="vi_presets_v1";
@@ -852,7 +863,7 @@ const hero=$("hero"), cover=$("cover"), uc=$("uc");
 const EL = {};
 function mk(cls, html){ const d=document.createElement("div"); d.className="el "+cls; d.innerHTML=html; return d; }
 EL.symbol = mk("sym", `<i class="sg" role="img" aria-label="Symbol"></i>`);
-EL.time   = mk("time mono2", `<span class="t1">--:--:--</span><span class="t2"></span>`);
+EL.time   = mk("time mono2", `<span class="t1 ln">--:--:--</span><span class="t2 ln"></span>`);
 EL.detail = mk("detail mono2", "");
 EL.fps    = mk("fps mono2", "— FPS");
 function place(){
@@ -861,7 +872,7 @@ function place(){
   $("ucL").appendChild(EL.time); $("ucR").appendChild(EL.detail);
   if(u.fps) $("ucR").appendChild(EL.fps); else EL.fps.remove();
   $("ucL").dataset.al=u.tal; $("ucR").dataset.al=u.dal;
-  EL.detail.textContent=u.text;
+  EL.detail.innerHTML=u.text.split("\n").map(l=>`<span class="ln">${esc(l)||"&nbsp;"}</span>`).join("");
   EL.time.style.wordSpacing=((u.tws||0)/100)+"em"; EL.detail.style.wordSpacing=((u.dws||0)/100)+"em";
   uc.style.setProperty("--sp", splitPct()+"%");
   runFps();
@@ -908,15 +919,20 @@ function applyLayout(){
 /* X / Y move Game, Countdown and Date as a share of the cover; the text never runs into the UC row or past the cover */
 function applyY(){
   const H=cover.clientHeight, Wc=cover.clientWidth, inside=uc.parentElement===cover;
-  [[ttl,"game"],[hb,"cd"],[hd,"date"]].forEach(([el,k])=>{ const o=S.type[k];
+  /* the countdown block also carries the date, so its limit is measured on the countdown itself (hc), not on the whole block */
+  [[ttl,"game",ttl],[hb,"cd",hc],[hd,"date",hd]].forEach(([el,k,ref])=>{ const o=S.type[k];
     let ty=(o.y||0)/100*H; const tx=(o.x||0)/100*Wc;
     el.style.translate = (tx||ty) ? `${tx.toFixed(1)}px ${ty.toFixed(1)}px` : "";
-    const limit = inside ? uc.getBoundingClientRect().top-6 : cover.getBoundingClientRect().bottom-4, over=el.getBoundingClientRect().bottom-limit;
+    const limit = inside ? uc.getBoundingClientRect().top-6 : cover.getBoundingClientRect().bottom-4, over=ref.getBoundingClientRect().bottom-limit;
     if(over>0){ ty-=over; el.style.translate=`${tx.toFixed(1)}px ${ty.toFixed(1)}px`; } });
   glassText();
 }
 function sizeCover(){
-  const e=(+S.cover.ext||0)/100; cover.classList.toggle("exth", e>0); hero.classList.toggle("ext", e>0);
+  const e=clamp((+S.cover.ext||0)/100,-1,1); cover.classList.toggle("exth", e!==0); hero.classList.toggle("ext", e>0);
+  /* Extend below 0 makes the cover shorter, down to 20% of the area from MENU to BODY; the UC row stays under it */
+  if(e<0){ if(uc.parentElement!==hero) hero.appendChild(uc); hero.style.height=""; hero.style.removeProperty("--xt");
+    const w=cover.clientWidth, Hc=innerWidth<=700 ? 440 : Math.max(420, w*10/16), H0=32+Hc+uc.offsetHeight+8+28, min=H0*.2;
+    cover.style.height=Math.round(Hc-(Hc-min)*-e)+"px"; return; }
   if(!e){ hero.style.height=""; cover.style.height=""; hero.style.removeProperty("--xt"); if(uc.parentElement!==hero) hero.appendChild(uc); return; }
   const P1=32, P2=28, w=cover.clientWidth, Hc=innerWidth<=700 ? 440 : Math.max(420, w*10/16);
   if(uc.parentElement!==hero) hero.appendChild(uc);
@@ -943,7 +959,7 @@ function renderTitle(){
       ttl.innerHTML = words.map(w=>`<span class="w">${esc(w)}</span>`).join("");
     }else{
       ttl.className="ht para al-"+al; ttl.style.setProperty("--tal", al);
-      ttl.innerHTML = txt.split("\n").map(line=>line.split(/\s+/).filter(Boolean).map(w=>`<span class="w">${esc(w)}</span>`).join(" ")).join("\n");
+      ttl.innerHTML = txt.split("\n").map(line=>`<span class="ln">${line.split(/\s+/).filter(Boolean).map(w=>`<span class="w">${esc(w)}</span>`).join(" ")||"&nbsp;"}</span>`).join("");
     }
   }
   ttl.setAttribute("aria-label", t.mode==="image"?"GTA VI":t.text);
@@ -962,7 +978,7 @@ function cdParts(){
   return S.type.cd.days ? [String(d), "DAYS"] : [pad(d)+"D", pad(h)+":"+pad(m)+":"+pad(s)];
 }
 function fitCD(){
-  const c=S.type.cd, jf=c.al==="justify";
+  const c=S.type.cd, jf=/^(justify|jleft|jright)$/.test(c.al);
   hb.style.setProperty("--cal", jf?"left":c.al);
   hc.classList.toggle("jf", jf);
   hc.style.fontSize="100px";
@@ -974,7 +990,7 @@ function fitCD(){
   const w = jf ? (cdD.offsetWidth+cdT.offsetWidth+(parseFloat(getComputedStyle(hc).columnGap)||0))/.86 : (hc.offsetWidth+4)/.98;
   hc.style.fontSize = Math.min(100*Wd/Math.max(w,1), cap)*(c.size||100)/100+"px";
   cdD.textContent=tD; cdT.textContent=tT;
-  hd.style.textAlign = S.type.date.al==="justify" ? "center" : S.type.date.al;
+  hd.style.textAlign = ({justify:"center",jleft:"left",jright:"right"})[S.type.date.al] || S.type.date.al;
 }
 function tick(){
   const [a,b]=cdParts(); cdD.textContent=a; cdT.textContent=b;
@@ -1043,6 +1059,7 @@ function glassText(){
       let px=rr.left-r.left+(parseFloat(cs.paddingLeft)||0); if(!inl && ta==="center") px=rr.left-r.left+(rr.width-tw)/2; else if(!inl && (ta==="right"||ta==="end")) px=rr.right-r.left-tw;
       mx.fillStyle="#000"; mx.fillText(t,px,baseY(mx,t,rr.top-r.top,rr.height),inl?rr.width*1.02:undefined); });
     if(!ov){ ov=document.createElement("div"); ov.id="lgx-"+k; ov.className="lgx"; cover.appendChild(ov); }
+    ov.style.zIndex=textZ-1;   // the glass sits just under the Cover Text layer
     Object.assign(ov.style,{left:(r.left-cr.left)+"px", top:(r.top-cr.top)+"px", width:Wd+"px", height:Hd+"px"});
     ov.style.webkitMaskImage=ov.style.maskImage=`url(${mask.toDataURL()})`;
     const gt=S.ui.glass/100, bl = g.blend ? Math.round((g.blur+4+gt*36)/2) : g.blur;
@@ -1056,7 +1073,7 @@ function baseY(ctx, t, top, h){ ctx.textBaseline="alphabetic"; const m=ctx.measu
 [[ttl,"game"],[hc,"cd"],[hd,"date"]].forEach(([el,k])=>dragOnCover(el, e=>{
   if(S.ui.fel!==k){ S.ui.fel=k; if(curTab==="page" && cpEl.dataset.built) buildPanel(); }
   return {x:e.clientX, y:e.clientY, ox:S.type[k].x||0, oy:S.type[k].y||0}; }, (d,e)=>{
-  const o=S.type[k]; o.x=Math.round(clamp(d.ox+(e.clientX-d.x)/cover.clientWidth*100,-100,100)); o.y=Math.round(clamp(d.oy+(e.clientY-d.y)/cover.clientHeight*100,-100,100)); applyY(); }));
+  const o=S.type[k]; o.x=Math.round(clamp(d.ox+(e.clientX-d.x)/cover.clientWidth*100,-100,100)); o.y=Math.round(clamp(d.oy+(e.clientY-d.y)/cover.clientHeight*100,-150,150)); applyY(); }));
 
 /* ================= cover effects =================
    The FX list is a layer stack like Photoshop: the top item is the top layer. Cover text always sits above every FX layer;
@@ -1076,6 +1093,7 @@ function scanBG(sc){
   return out.join(",")||"none";
 }
 const setMask=(el,m,anim)=>{ el.style.webkitMaskImage=el.style.maskImage=m||"none"; el.style.webkitMaskSize=el.style.maskSize=anim&&m?"200% 200%":"100% 100%"; el.style.webkitMaskRepeat=el.style.maskRepeat="no-repeat"; el.classList.toggle("anim", !!(anim&&m)); };
+let textZ=3;
 const LAY={tilt:"tilt",blur:"fxb",radial:"radL",iris:"irisL",path:"pathL",pstr:"pstrL",pix:"pixL",scan:"scan",heat:"heat"};
 function applyFx(){
   const f=S.fx, b=f.blur, fb=$("fxb"), dc=[...cover.querySelectorAll(".bgi .dbc")];
@@ -1102,7 +1120,9 @@ function applyFx(){
   he.style.opacity=(h.op/100).toFixed(2); he.style.backdropFilter=he.style.webkitBackdropFilter=`url(#fhwf)${h.blur?` blur(${h.blur}px)`:""}`;
   const ha=document.querySelector("#heatSvg animate"); if(ha) ha.setAttribute("dur", (60*100/Math.max(5,h.speed)).toFixed(1)+"s");
   try{ h.anim ? $("heatSvg").unpauseAnimations() : $("heatSvg").pauseAnimations(); }catch(e){}
-  f.order.forEach((k,i)=>{ $(LAY[k]).style.zIndex=-1-i; });
+  /* z: top item -1, then -3, -5…; the gaps leave room for the glass of Glass Text Fx right under the Cover Text layer */
+  f.order.forEach((k,i)=>{ const z=-1-2*i; if(k==="text"){ textZ=z; cover.querySelector(".fin").style.zIndex=z; EL.symbol.style.zIndex=z; } else $(LAY[k]).style.zIndex=z; });
+  document.querySelectorAll(".lgx").forEach(o=>o.style.zIndex=textZ-1);
   applyCapFx();
 }
 /* capture filters: shown live on the cover, on top of everything, and kept in the captured image */
@@ -1118,6 +1138,7 @@ function applyCapFx(){
 
 /* ================= weight meter: a rough cost per effect, so heavy combinations show before the page stutters ================= */
 const COST = {
+  text:  ()=>0,
   tilt:  f=>f.on ? 1+f.blur/15 : 0,
   blur:  f=>!f.on ? 0 : (f.mo ? 2.5+f.mamt/60 : 1+f.amt/12) + (f.noise&&f.anim ? 1 : 0),
   radial:f=>!f.on ? 0 : (MOB?6:10)*(f.mode==="spin"&&f.twist>0 ? (MOB?4:6) : 1)*.22,
@@ -1215,7 +1236,7 @@ const bgA=$("bgA"), bgB=$("bgB");
 let sIdx=-1, sBusy=false, sTimer=0, sHist=[];
 const loadImg = src => new Promise((ok,no)=>{const m=new Image();m.onload=()=>ok(src);m.onerror=no;m.src=src});
 const pickFrom = (n,cur) => { if(n<2) return 0; let i; do{ i=Math.floor(Math.random()*n) }while(i===cur); return i; };
-function activeSlides(){ const off=new Set(S.slide.off||[]); const a=ALLS.filter(s=>!off.has(s)); SLIDES = a.length ? a : ALLS.slice(); sIdx=Math.max(0,Math.min(sIdx,SLIDES.length-1)); }
+function activeSlides(){ const a=ALLS.slice(0, Math.max(2, S.slide.max||ALLS.length)); SLIDES = a.length ? a : ALLS.slice(); sIdx=Math.max(0,Math.min(sIdx,SLIDES.length-1)); }
 async function loadSlideList(){
   try{ const [o,r,...pth]=SLIDE_DIR.split("/"); const j=await (await fetch(`https://api.github.com/repos/${o}/${r}/contents/${pth.join("/")}`)).json();
     const a=(Array.isArray(j)?j:[]).filter(f=>f.type==="file"&&/\.(jpe?g|png|webp|avif)$/i.test(f.name)).map(f=>"slides/"+f.name).sort((x,y)=>x.localeCompare(y,undefined,{numeric:true}));
@@ -1241,7 +1262,7 @@ async function showSlide(i, animate, dir){
 }
 /* transitions: bgB holds the old picture, bgA the new one; each runs for the set duration */
 async function slideFx(dir){
-  const T=Math.round((S.slide.dur||1.2)*1000), tr=S.slide.tr, ease="cubic-bezier(.65,0,.35,1)", o={duration:T,easing:ease};
+  const TRS=["pan","fade","blur","dblur","stretch","broken"], T=Math.round((S.slide.dur||1.2)*1000), tr=S.slide.tr==="random" ? TRS[Math.floor(Math.random()*TRS.length)] : S.slide.tr, ease="cubic-bezier(.65,0,.35,1)", o={duration:T,easing:ease};
   const DIRS=[[1,0],[-1,0],[0,1],[0,-1]], [dx,dy]=dir?[dir,0]:DIRS[Math.floor(Math.random()*4)];
   const run=list=>Promise.all(list.map(a=>a.finished)).catch(()=>{});
   if(tr==="fade") return run([bgB.animate([{opacity:1},{opacity:0}],{duration:T,easing:"ease-in-out"})]);
@@ -1273,7 +1294,7 @@ function voronoi(W,H,n){
 }
 async function shatter(T){
   const r=cover.getBoundingClientRect(), W=r.width, H=r.height, box=document.createElement("div");
-  box.className="lay shards"; box.style.zIndex=-18; const img=bgB.style.backgroundImage, an=[];
+  box.className="lay shards"; box.style.zIndex=-38; const img=bgB.style.backgroundImage, an=[];
   voronoi(W,H,MOB?18:34).forEach(({c:[cx,cy],poly})=>{
     const d=document.createElement("i");
     d.style.cssText=`position:absolute;inset:0;background:${img} center/cover no-repeat;clip-path:polygon(${poly.map(p=>p[0].toFixed(1)+"px "+p[1].toFixed(1)+"px").join(",")});transform-origin:${cx}px ${cy}px`;
@@ -1522,28 +1543,42 @@ const gfont = (k,l) => fld(l, `<input type="text" id="c_${k}" data-k="${k}" list
 const grp = (title, body, show="") => `<div class="grp"${show?` data-show="${show}"`:""}>${title?`<h5>${title}</h5>`:""}${body}</div>`;
 const sub = (show, body) => `<div class="sub" data-show="${show}">${body}</div>`;
 const chips = (l, list) => `<div class="f"><span>${l}</span><div class="btns">${list.map(([k,t])=>`<button type="button" class="chip" data-chip="${k}" aria-pressed="false">${t}</button>`).join("")}</div></div>`;
-const AICO={left:"M3 5h14M3 10h9M3 15h12",center:"M3 5h14M5.5 10h9M4 15h12",right:"M3 5h14M8 10h9M5 15h12",justify:"M3 5h14M3 10h14M3 15h14"};
-const icoBtn = (v,a) => `<button type="button" data-v="${v}" aria-label="${a}" title="${a}"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="${AICO[a]}"/></svg></button>`;
+/* justify = every line edge to edge; jleft / jright = justified, last line to the left / right (for paragraphs) */
+const AICO={left:"M3 5h14M3 10h9M3 15h12",center:"M3 5h14M5.5 10h9M4 15h12",right:"M3 5h14M8 10h9M5 15h12",justify:"M3 5h14M3 10h14M3 15h14",jleft:"M3 5h14M3 10h14M3 15h7",jright:"M3 5h14M3 10h14M10 15h7"};
+const ALN = {left:"Left",center:"Center",right:"Right",justify:"Justified",jleft:"Justified · last line left",jright:"Justified · last line right"};
+const icoBtn = (v,a) => `<button type="button" data-v="${v}" aria-label="${ALN[a]||a}" title="${ALN[a]||a}"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="${AICO[a]}"/></svg></button>`;
 const alico = (k,l,keys=["left","center","right"]) => `<div class="f"><span>${l}</span><div class="seg ico" data-seg="${k}">${keys.map(v=>icoBtn(v,v)).join("")}</div></div>`;
 /* a slider that steps through a list of options (value, label) */
 const srng = (k,l,opts) => `<div class="f rg"><span>${l}</span><span class="val" data-sval="${k}"></span><input type="range" data-sk="${k}" data-opts='${JSON.stringify(opts.map(o=>o[0]))}' data-lbl='${esc(JSON.stringify(opts.map(o=>o[1])))}' min="0" max="${opts.length-1}" step="1" aria-label="${esc(l)}"></div>`;
+const posOpen=new Set();
+const pos = (id, keys, body) => `<details class="pos" data-pos="${id}"${posOpen.has(id)?" open":""}><summary><span>${L("Vị trí & căn lề","Position & align")}</span><span class="val" data-psum="${keys.join(",")}"></span></summary><div class="pbody">${body}</div></details>`;
+const pickRow = (k, list) => `<div class="f telf"><div class="seg tel" data-seg="${k}">${list.map(([v,t])=>`<button type="button" data-v="${v}">${t}</button>`).join("")}</div></div>`;
 const TNAME = () => ({game:"Game", cd:"Countdown", date:"Date"});
-const FXN = {tilt:"Tilt-shift", blur:"Blur", radial:"Radial blur", iris:"Iris blur", path:"Path blur", pstr:"Pixel stretch", pix:"Pixelize", scan:"Scan", heat:"Heat wave"};
+const FXN = {text:"Cover Text", tilt:"Tilt-shift", blur:"Blur", radial:"Radial blur", iris:"Iris blur", path:"Path blur", pstr:"Pixel stretch", pix:"Pixelize", scan:"Scan", heat:"Heat wave"};
 const TABS = () => { const on=L("Bật","On"), inten=L("Cường độ","Intensity"), anim=L("Chạy anim","Animate"), speed=L("Tốc độ","Speed"); return [
- ["cover","Cover", ()=>
-   grp("Title", seg("title.mode",L("Dạng","Type"),[["text",L("Chữ","Text")],["image",L("Ảnh / symbol","Image / symbol")]])
+ ["cover","Cover", ()=>{
+   const c=["title","sym","uc"].includes(S.ui.cel)?S.ui.cel:"title", g=`type.game`;
+   S.slide.max=Math.min(S.slide.max||40, ALLS.length, 40);   // never more than the folder holds (40 at most)
+   const body = c==="title" ?
+       seg("title.mode",L("Dạng","Type"),[["text",L("Chữ","Text")],["image",L("Ảnh / symbol","Image / symbol")]])
      + sub("title.mode:text", area("title.text",L("Nội dung (1 từ hoặc 1 đoạn)","Text (a word or a paragraph)"),2))
-     + sub("title.mode:image", `<div class="btns"><button type="button" class="btn" data-act="titleImg">${L("Chọn ảnh…","Choose image…")}</button><button type="button" class="btn" data-act="titleImgX">${L("Xoá","Remove")}</button></div>`))
-  +grp(L("Khoảng cách","Spacing"), rng("cover.g1","Game ↔ Countdown",-4,20,.1,"") + rng("cover.g2","Countdown ↔ Date",-3,10,.05,""))
-  +grp("Symbol", tog("sym.show",L("Hiện","Show")) + sub("sym.show:true",
+     + sub("title.mode:image", `<div class="btns"><button type="button" class="btn" data-act="titleImg">${L("Chọn ảnh…","Choose image…")}</button><button type="button" class="btn" data-act="titleImgX">${L("Xoá","Remove")}</button></div>`)
+     + pos("title",[`${g}.x`,`${g}.y`,`${g}.al`], rng(`${g}.x`,"X",-100,100,1,"%") + rng(`${g}.y`,"Y",-150,150,1,"%") + alico(`${g}.al`,"Align",Object.keys(AICO)))
+     + `<p class="hint">${L("Khi panel đang mở, kéo Title ngay trên Cover. Font, màu, hiệu ứng chữ ở Page › Type › Game.","While this panel is open, drag the title on the cover. Font, colour and text effects are in Page › Type › Game.")}</p>`
+     : c==="sym" ?
+       tog("sym.show",L("Hiện","Show")) + sub("sym.show:true",
        `<div class="btns"><button type="button" class="btn" data-act="symImg">${L("Chọn ảnh…","Choose image…")}</button><button type="button" class="btn" data-act="symDef">${L("Về logo gốc","Default logo")}</button></div>`
-     + rng("sym.size",L("Kích thước","Size"),40,300,5,"%") + rng("sym.x","X",0,100,1,"%") + rng("sym.y","Y",0,100,1,"%")
-     + `<div class="f"><span>${L("Căn nhanh","Quick")}</span><div class="seg ico" data-seg="sym.x">${icoBtn("0","left")+icoBtn("50","center")+icoBtn("100","right")}</div></div>`
+     + rng("sym.size",L("Kích thước","Size"),40,300,5,"%")
      + seg("sym.cm",L("Màu","Color"),[["theme","Theme"],["solid","Solid"]]) + sub("sym.cm:solid", col("sym.c",L("Màu","Color")))
-     + `<p class="hint">${L("Khi panel đang mở, kéo thả symbol ngay trên Cover. Ảnh tải lên nên là PNG nền trong.","While this panel is open, drag the symbol on the cover. Uploads work best as transparent PNGs.")}</p>`))
-  +grp("Undercover (UC)", rng("uc.split",L("Chia cột","Split"),10,90,1,"%") + alico("uc.tal","Time",["left","center","right","justify"]) + rng("uc.tws","Word spacing · Time",-50,300,1,"") + alico("uc.dal","Detail",["left","center","right","justify"]) + rng("uc.dws","Word spacing · Detail",-50,300,1,"") + `<textarea id="c_uc.text" data-k="uc.text" rows="3" aria-label="Detail"></textarea>` + tog("uc.fps",L("Hiện FPS (dưới Detail)","Show FPS (under Detail)")))
-  +grp(L("Slide ảnh","Slides"), srng("slide.every",L("Đổi ảnh mỗi","Change every"),EVERY()) + seg("slide.tr",L("Chuyển cảnh","Transition"),[["pan","Pan"],["fade","Fade"],["blur","Blur"],["dblur","Directional blur"],["stretch","Stretch"],["broken","Broken"]]) + rng("slide.dur",L("Thời gian","Duration"),.3,4,.1,"s") + sub("slide.tr:dblur", rng("slide.dbi",inten,20,400,5,"px")) + sub("slide.tr:stretch", rng("slide.sti",L("Độ kéo dãn","Stretch"),1.1,6,.1,"×")) + `<div class="btns"><button type="button" class="btn" data-act="slideTry">${L("Xem thử","Preview")}</button></div>`
-     + `<div class="btns"><a class="btn" href="https://github.com/zuilopez/afterrock/upload/main/VI/slides" target="_blank" rel="noopener">${L("Thêm ảnh trên GitHub ↗","Add images on GitHub ↗")}</a><a class="btn" href="https://github.com/zuilopez/afterrock/tree/main/VI/slides" target="_blank" rel="noopener">${L("Mở thư mục ↗","Open folder ↗")}</a></div>`)],
+     + pos("sym",["sym.x","sym.y"], rng("sym.x","X",0,100,1,"%") + rng("sym.y","Y",0,100,1,"%")
+       + `<div class="f"><span>${L("Căn nhanh","Quick")}</span><div class="seg ico" data-seg="sym.x">${icoBtn("0","left")+icoBtn("50","center")+icoBtn("100","right")}</div></div>`)
+     + `<p class="hint">${L("Khi panel đang mở, kéo thả symbol ngay trên Cover. Ảnh tải lên nên là PNG nền trong.","While this panel is open, drag the symbol on the cover. Uploads work best as transparent PNGs.")}</p>`)
+     : rng("uc.split",L("Chia cột","Split"),10,90,1,"%") + alico("uc.tal","Time",Object.keys(AICO)) + rng("uc.tws","Word spacing · Time",-50,300,1,"") + alico("uc.dal","Detail",Object.keys(AICO)) + rng("uc.dws","Word spacing · Detail",-50,300,1,"") + `<textarea id="c_uc.text" data-k="uc.text" rows="3" aria-label="Detail"></textarea>` + tog("uc.fps",L("Hiện FPS (dưới Detail)","Show FPS (under Detail)"));
+   return grp("", pickRow("ui.cel",[["title","Title"],["sym","Symbol"],["uc","Undercover"]]) + body)
+  +grp(L("Slide ảnh","Slides"), srng("slide.every",L("Đổi ảnh mỗi","Change every"),EVERY()) + seg("slide.tr",L("Chuyển cảnh","Transition"),[["random","Random"],["pan","Pan"],["fade","Fade"],["blur","Blur"],["dblur","Directional blur"],["stretch","Stretch"],["broken","Broken"]]) + rng("slide.dur",L("Thời gian","Duration"),.3,4,.1,"s") + sub("slide.tr:dblur", rng("slide.dbi",inten,20,400,5,"px")) + sub("slide.tr:stretch", rng("slide.sti",L("Độ kéo dãn","Stretch"),1.1,6,.1,"×"))
+     + rng("slide.max",L("Số ảnh dùng","Images used"),2,Math.min(40,ALLS.length),1,"") + `<div class="btns"><button type="button" class="btn" data-act="slideTry">${L("Xem thử","Preview")}</button></div>`
+     + `<div class="btns"><a class="btn" href="https://github.com/zuilopez/afterrock/upload/main/VI/slides" target="_blank" rel="noopener">${L("Thêm ảnh trên GitHub ↗","Add images on GitHub ↗")}</a><a class="btn" href="https://github.com/zuilopez/afterrock/tree/main/VI/slides" target="_blank" rel="noopener">${L("Mở thư mục ↗","Open folder ↗")}</a></div>`
+     + `<p class="hint">${L("Thêm ảnh: bấm Thêm ảnh trên GitHub, kéo file .jpg/.png/.webp vào rồi bấm Commit. Xoá ảnh: Mở thư mục, bấm vào ảnh, chọn ⋯ › Delete file rồi Commit. Trang tự đọc lại danh sách, tên file quyết định thứ tự (đặt số đầu tên: 01_, 02_…). Tối đa 40 ảnh, mỗi ảnh nên rộng 1920px và dưới 500 KB; Số ảnh dùng chọn bao nhiêu ảnh đầu danh sách được đưa vào vòng chiếu.","To add: press Add images on GitHub, drop .jpg/.png/.webp files in and press Commit. To remove: Open folder, click the image, choose ⋯ › Delete file and Commit. The page re-reads the list; file names set the order (start them with 01_, 02_…). Up to 40 images, ideally 1920px wide and under 500 KB each; Images used picks how many from the top of the list go into the rotation.")}</p>`); }],
  ["page",L("Trang","Page"), ()=>{
    const k=TK.includes(S.ui.fel)?S.ui.fel:"game", p=`type.${k}`;
    /* Type: pick the text first, then its Glass Text Fx, Neon, then the font settings */
@@ -1559,12 +1594,12 @@ const TABS = () => { const on=L("Bật","On"), inten=L("Cường độ","Intensi
        + (k==="cd" ? tog("type.cd.days",L("Chỉ hiện ngày","Days only")) : "")
        + rng(`${p}.size`,L("Cỡ chữ","Size"),...(k==="game"?[30,160]:k==="cd"?[30,100]:[50,200]),1,"%")
        + rng(`${p}.wt`,L("Độ đậm","Weight"),100,900,100)
-       + rng(`${p}.x`,"X",-100,100,1,"%") + rng(`${p}.y`,"Y",-100,100,1,"%")
-       + alico(`${p}.al`,"Align",k==="date"?["left","center","right"]:Object.keys(AICO))
+       + pos(k,[`${p}.x`,`${p}.y`,`${p}.al`], rng(`${p}.x`,"X",-100,100,1,"%") + rng(`${p}.y`,"Y",-150,150,1,"%") + alico(`${p}.al`,"Align",k==="date"?["left","center","right"]:Object.keys(AICO)))
        + seg(`${p}.col.m`,L("Màu","Color"),[["theme","Theme"],["solid","Solid"],["grad","Gradient"]]) + sub(`${p}.col.m:solid,grad`, col(`${p}.col.c1`,L("Màu 1","Color 1"))) + sub(`${p}.col.m:grad`, col(`${p}.col.c2`,L("Màu 2","Color 2")))
        + rng(`${p}.ls`,"Letter spacing",-50,180,1) + rng(`${p}.ws`,"Word spacing",-20,100,1)
        + seg(`${p}.case`,L("Kiểu chữ","Case"),[["none","As typed"],["uppercase","UPPERCASE"],["capitalize","Capitalize"]])
-       + `<p class="hint">${L("Kéo chữ ngay trên Cover để đổi X/Y (từng 1 %); các nút Align là vị trí đặt nhanh. Ô số cạnh mỗi thanh gõ được giá trị chính xác.","Drag the text on the cover to change X/Y (1 % steps); the Align buttons are quick presets. The number box next to each slider takes an exact value.")}</p></div>`;
+       + `<p class="hint">${L("Kéo chữ ngay trên Cover để đổi X/Y (từng 1 %); mở Vị trí & căn lề để chỉnh số hoặc chọn Align. Ô số cạnh mỗi thanh gõ được giá trị chính xác.","Drag the text on the cover to change X/Y (1 % steps); open Position & align to type values or pick an alignment. The number box next to each slider takes an exact value.")}</p></div>`
+       + `<div class="tsub"><h6>${L("Khoảng cách","Spacing")}</h6>${rng("cover.g1","Game ↔ Countdown",-4,20,.1,"") + rng("cover.g2","Countdown ↔ Date",-3,10,.05,"")}</div>`;
    return grp("Background", seg("page.mode",L("Kiểu","Mode"),[["default",L("Mặc định","Default")],["color",L("Màu","Color")],["gradient","Gradient"],["image",L("Ảnh","Image")],["slide","Slide"]]))
   +grp("", col("page.color",L("Màu","Color")), "page.mode:color")
   +grp("", col("page.g1",L("Màu 1","Color 1"))+col("page.g2",L("Màu 2","Color 2"))+rng("page.ga",L("Góc","Angle"),0,360,1,"°"), "page.mode:gradient")
@@ -1580,6 +1615,7 @@ const TABS = () => { const on=L("Bật","On"), inten=L("Cường độ","Intensi
      + rng("footer.h",L("Chiều cao","Height"),40,400,5,"px") + rng("footer.i",inten,0,100) + rng("footer.op","Opacity",0,100,1,"%") + rng("footer.blur","Blur",0,30,1,"px")
      + rng("footer.wave",L("Sóng noise","Noise wave"),0,100) + rng("footer.nz",L("Texture noise","Noise texture"),0,100) + rng("footer.sl","Scanline",1,6,1,"px") + tog("footer.anim",anim) + sub("footer.anim:true", rng("footer.spd",speed,10,400,5,"%"))); }],
  ["fx",L("Hiệu ứng","Effects"), ()=>{ const G={
+   text:`<p class="hint">${L("Lớp chữ của Cover: Title, Countdown, Date và Symbol (kèm Glass Text Fx, Neon). Kéo lên xuống để đặt chữ trên hoặc dưới các lớp hiệu ứng.","The cover text layer: title, countdown, date and symbol (with Glass Text Fx and Neon). Move it up or down to put the text above or below effect layers.")}</p>`,
    tilt:tog("fx.tilt.on",on) + sub("fx.tilt.on:true", rng("fx.tilt.blur",L("Độ mờ","Blur"),0,30,1,"px")+rng("fx.tilt.band",L("Vùng nét","Sharp band"),5,80,1,"%")+rng("fx.tilt.soft",L("Độ chuyển","Falloff"),0,60,1,"%")),
    blur:tog("fx.blur.on",on) + sub("fx.blur.on:true", rng("fx.blur.i",inten,0,100,1,"%")
        + tog("fx.blur.noise","Random noise") + sub("fx.blur.noise:true", rng("fx.blur.ns","Random",60,1200,10,"") + tog("fx.blur.anim",anim))
@@ -1606,7 +1642,7 @@ const TABS = () => { const on=L("Bật","On"), inten=L("Cường độ","Intensi
      + chips(L("Màu","Color"),[["fx.heat.ct","Theme"],["fx.heat.cu","Custom"]]) + sub("fx.heat.cu:true", col("fx.heat.c1",L("Màu","Color")))
      + rng("fx.heat.i",inten,0,100) + rng("fx.heat.op","Opacity",0,100,1,"%") + rng("fx.heat.blur","Blur",0,20,1,"px")
      + tog("fx.heat.anim",anim) + sub("fx.heat.anim:true", rng("fx.heat.speed",speed,10,400,5,"%")))};
-   return costHTML() + `<p class="hint">${L("Giữ vạch màu rồi kéo để xếp lớp như Photoshop: mục trên cùng là lớp nằm trên cùng. Chữ trên Cover luôn nằm trên mọi lớp FX.","Press and hold the coloured bar, then drag to stack layers like Photoshop: the top item is the top layer. Cover text always stays above every FX layer.")}</p>`
+   return costHTML() + `<p class="hint">${L("Giữ vạch màu rồi kéo để xếp lớp như Photoshop: mục trên cùng là lớp nằm trên cùng. Cover Text là lớp chữ, kéo được như các lớp khác.","Press and hold the coloured bar, then drag to stack layers like Photoshop: the top item is the top layer. Cover Text is the text layer and moves like any other.")}</p>`
      + S.fx.order.map(k=>`<div class="grp dg${fxOpen.has(k)?" open":""}" data-fxk="${k}"><h5 class="dh"><button type="button" class="grip" aria-label="${L("Kéo để đổi thứ tự","Drag to reorder")}"></button><span class="nm">${FXN[k]}</span><span class="wt" data-wt="${k}"></span><i class="st"></i></h5><div class="gb"><div class="gi">${G[k]}</div></div></div>`).join(""); }],
  ["cap","Capture", ()=>
    grp("Capture", seg("cap.fmt",L("Định dạng","Format"),[["png","PNG"],["jpg","JPG"]]))
@@ -1621,7 +1657,7 @@ const TABS = () => { const on=L("Bật","On"), inten=L("Cường độ","Intensi
 ]; };
 /* effect groups: closed by default, open on hover; clicking the title closes it (on touch screens a tap toggles it) */
 const fxOpen=new Set(), HOVER=matchMedia("(hover:hover)").matches;
-const fxOn = k => !!S.fx[k].on;
+const fxOn = k => k==="text" || !!S.fx[k].on;
 $("cpBody").addEventListener("click", e=>{ const h=e.target.closest(".dh"); if(!h || e.target.closest(".grip")) return; const g=h.parentElement, k=g.dataset.fxk;
   if(HOVER){ g.classList.add("shut"); fxOpen.delete(k); g.classList.remove("open"); } else { g.classList.toggle("open"); g.classList.contains("open") ? fxOpen.add(k) : fxOpen.delete(k); } });
 $("cpBody").addEventListener("mouseout", e=>{ const g=e.target.closest(".dg"); if(g && !g.contains(e.relatedTarget)) g.classList.remove("shut"); });
@@ -1656,6 +1692,7 @@ function syncPanel(){
   B.querySelectorAll("[data-chip]").forEach(b=>b.setAttribute("aria-pressed", !!getP(b.dataset.chip)));
   B.querySelectorAll(".dg").forEach(g=>{ const k=g.dataset.fxk; g.querySelector(".st").classList.toggle("on", fxOn(k)); const w=g.querySelector("[data-wt]"), c=fxCost(k); w.textContent=c?c.toFixed(1):""; w.className="wt l"+(c<2?1:c<4?2:3); });
   const wm=B.querySelector(".wmeter"); if(wm) wm.outerHTML=costHTML();
+  B.querySelectorAll("[data-psum]").forEach(el=>{ el.textContent=el.dataset.psum.split(",").map(k=>{ const v=getP(k), n=k.split(".").pop(); return n==="al" ? (ALN[v]||v) : n.toUpperCase()+" "+v+"%"; }).join(" · "); });
   B.querySelectorAll("[data-show]").forEach(el=>{ const [k,vals]=el.dataset.show.split(":"); el.hidden=!vals.split(",").includes(String(getP(k))); });
 }
 const RERENDER = k => {
@@ -1669,7 +1706,8 @@ const RERENDER = k => {
   else if(k.startsWith("footer")) applyFooter();
   else if(k==="slide.every") restartSlides();
   else if(k.startsWith("page")){ if(k==="page.gh") ghKey=""; buildPage(); }
-  else if(k==="ui.fel") buildPanel();
+  else if(k==="ui.fel"||k==="ui.cel") buildPanel();
+  else if(k==="slide.max"){ activeSlides(); }
   else if(k.startsWith("uc")) place();
 };
 function commit(k,v){ setP(k,v); save(); try{ RERENDER(k); }catch(err){ console.error(err); } syncPanel(); }
@@ -1719,9 +1757,10 @@ $("cpBody").addEventListener("click", async e=>{
     idle(); }
 });
 function pickFile(accept, cb){ const i=document.createElement("input"); i.type="file"; i.accept=accept; i.onchange=()=>{ if(i.files[0]) cb(i.files[0]); }; i.click(); }
+$("cpBody").addEventListener("toggle", e=>{ const d=e.target.closest && e.target.closest("[data-pos]"); if(d) d.open ? posOpen.add(d.dataset.pos) : posOpen.delete(d.dataset.pos); }, true);
 $("cpTabs").addEventListener("click", e=>{ const b=e.target.closest("[data-tab]"); if(!b) return; curTab=b.dataset.tab; try{ localStorage.setItem("vi_tab",curTab); }catch(err){} buildPanel(); });
 $("glassR").addEventListener("input", e=>{ S.ui.glass=+e.target.value; save(); applyGlass(); });
-function syncExt(){ $("extR").value=S.cover.ext; $("extV").textContent=S.cover.ext+"%"; $("extR").style.setProperty("--p", S.cover.ext+"%"); }
+function syncExt(){ $("extR").value=S.cover.ext; $("extV").textContent=S.cover.ext+"%"; $("extR").style.setProperty("--p", ((S.cover.ext+100)/2)+"%"); }
 $("extR").addEventListener("input", e=>{ S.cover.ext=+e.target.value; save(); syncExt(); applyLayout(); });
 document.querySelectorAll("[data-cl]").forEach(b=>b.onclick=()=>setLang(b.dataset.cl));
 $("thSw").innerHTML=["#ff6bd0","#e5306b","#22d3ee","#55f7b1","#f2a33a","#a855f7","#f2f2f4"].map(c=>`<button type="button" class="btn swc" data-tc="${c}" style="background:${c}" aria-label="${c}"></button>`).join("");
@@ -1934,7 +1973,7 @@ if("IntersectionObserver" in window){
   io.observe(cover); io.observe($("ffx"));
 }
 /* ================= boot ================= */
-$("verF").textContent = VERSION;
+$("verF").textContent = VERSION; $("updF").textContent = BUILT;
 applyAll();
 activeSlides(); showSlide(Math.floor(Math.random()*SLIDES.length), false); loadSlideList();
 { const h=location.hash.slice(1); t3open(T3.includes(h) ? h : "news"); if(T3.includes(h)) setTimeout(()=>t3s.scrollIntoView({block:"start"}),60); }

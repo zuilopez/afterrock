@@ -125,7 +125,7 @@ td.cnt{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
 <body>
 
 <div class="wrap">
-  <div class="mono top" style="color:var(--muted)"><span>afterrock / VI · v0.27 · 22.10.2026</span><a href="./">← VI</a></div>
+  <div class="mono top" style="color:var(--muted)"><span>afterrock / VI · v0.28 · 23.10.2026</span><a href="./">← VI</a></div>
   <h1>Bản đồ trang <b>VI</b></h1>
   <p class="lede">Trang gồm những gì, mỗi tuỳ chỉnh nằm ở đâu và chạm vào phần nào. Bản này đã khớp với cấu trúc mới của v0.25: mỗi chữ trên Cover chỉnh ở một chỗ, tên trong code trùng tên bạn gọi. Mở trang này bằng cách bấm số version ở FOOTER.</p>
 
@@ -133,9 +133,9 @@ td.cnt{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
     <div class="sh"><span class="n">01</span><h2>Lượng kỹ thuật</h2></div>
     <p class="why">Trang chính vẫn là một file. Số đếm trực tiếp từ code v0.25.</p>
     <div class="stats">
-      <div class="stat"><b>182 KB</b><span>mã nguồn trang chính (chưa tính logo)</span></div>
-      <div class="stat"><b>130 KB</b><span>JavaScript</span></div>
-      <div class="stat"><b>40 KB</b><span>CSS · 455 quy tắc</span></div>
+      <div class="stat"><b>188 KB</b><span>mã nguồn trang chính (chưa tính logo)</span></div>
+      <div class="stat"><b>135 KB</b><span>JavaScript</span></div>
+      <div class="stat"><b>41 KB</b><span>CSS · 468 quy tắc</span></div>
       <div class="stat"><b>92</b><span>hàm JS có tên</span></div>
       <div class="stat"><b>9</b><span>lớp FX xếp được</span></div>
       <div class="stat"><b>6</b><span>filter Capture, luôn nằm trên cùng</span></div>
@@ -174,6 +174,7 @@ td.cnt{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
     <div class="plate"><div class="page">
       <div class="blk"><b>MENU</b><div class="sub"><span class="chip">Logo afterrock / VI</span><span class="chip">3 icon layout</span><span class="chip">News · Timeline · Gameplay · Info · Trailer</span><span class="chip">◆ sáng/tối</span><span class="chip">☆ mở CUSTOM</span></div></div>
       <div class="blk cover"><b>Cover</b><div><ol>
+        <li><b>Extend</b>: −100 → 100. Âm là thu thấp Cover, thấp nhất 20% chiều cao từ MENU xuống BODY</li>
         <li><b>NOTCH</b>: dải trên cùng của Cover, ngay dưới MENU (nháy đúp để mở CUSTOM)</li>
         <li><b>Symbol</b>: logo, kéo thả</li>
         <li><b>Game</b> · <b>Countdown</b> · <b>Date</b>: kéo thả khi panel mở</li>
@@ -187,13 +188,13 @@ td.cnt{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
 
   <section>
     <div class="sh"><span class="n">04</span><h2>Ngăn xếp lớp của Cover</h2></div>
-    <p class="why">Trên cùng là lớp nằm trên. Phần giữa kéo đổi chỗ được trong tab Effects. Chữ luôn nằm trên mọi lớp FX, vì lớp "Text" đã bỏ.</p>
+    <p class="why">Trên cùng là lớp nằm trên. Phần giữa kéo đổi chỗ được trong tab Effects, kể cả lớp Cover Text (chữ + Symbol), nên chữ có thể nằm trên hoặc dưới từng hiệu ứng.</p>
     <div class="plate"><div class="stack">
       <div class="sep">Cố định ở trên</div>
       <div class="ly fixed ov"><span class="z">+8</span><span class="nm">Filter Capture</span><span class="d2">Glow · Chromatic aberration · Vignette · Light leak · Color burn · Noise</span><span class="how">phủ cả chữ</span></div>
-      <div class="ly fixed ov"><span class="z">+6</span><span class="nm">Symbol · UC</span><span class="d2">UC chỉ nằm trong Cover khi Extend</span><span class="how">nội dung</span></div>
-      <div class="ly text"><span class="z">+3</span><span class="nm">Chữ</span><span class="d2">Game, Countdown, Date, kèm Neon và Glass Text Fx của từng chữ</span><span class="how">nội dung</span></div>
+      <div class="ly fixed ov"><span class="z">+6</span><span class="nm">UC</span><span class="d2">chỉ nằm trong Cover khi Extend &gt; 0</span><span class="how">nội dung</span></div>
       <div class="sep">Xếp được (tab Effects)</div>
+      <div class="ly text"><span class="z">−1</span><span class="nm">Cover Text</span><span class="d2">Title, Countdown, Date, Symbol, kèm Neon và Glass Text Fx</span><span class="how">nội dung</span></div>
       <div class="ly bd"><span class="z">−1…</span><span class="nm">Tilt-shift · Blur · Iris</span><span class="d2">Blur có Intensity, Random noise, Motion blur</span><span class="how">làm mờ phía sau</span></div>
       <div class="ly cp"><span class="z"></span><span class="nm">Radial · Path · Pixel stretch · Pixelize</span><span class="d2">dựng lại từ ảnh nền</span><span class="how">chỉ ảnh nền</span></div>
       <div class="ly ov"><span class="z"></span><span class="nm">Scan</span><span class="d2">Radar · Grid · Dotted · Circle + vệt quét</span><span class="how">phủ hình</span></div>
@@ -208,8 +209,8 @@ td.cnt{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
     <div class="sh"><span class="n">05</span><h2>Panel CUSTOM</h2></div>
     <p class="why">Đầu panel: vie | eng (trái) · Lưu · Tải · Reset · Ghim · Đóng. Ba thanh luôn hiện: Transparency · Extend · Theme. Bốn tab dàn đều.</p>
     <div class="pm">
-      <div class="tab"><h3>Cover</h3><ul><li>Title<i>chữ / ảnh</i></li><li>Khoảng cách<i>2</i></li><li>Symbol<i>cỡ, X, Y, màu, kéo thả</i></li><li>Undercover (UC)<i>chia cột, Time, Detail, FPS</i></li><li>Slide ảnh<i>5</i></li></ul></div>
-      <div class="tab"><h3>Page</h3><ul><li>Background + Hiệu ứng nền</li><li>Type<i>chọn chữ trước: Font · Cỡ · Đậm · X/Y · Align · Màu · giãn chữ · Neon · Glass Text Fx</i></li><li>Footer</li></ul></div>
+      <div class="tab"><h3>Cover</h3><ul><li>Tab Title · Symbol · Undercover<i>Vị trí & căn lề gập lại, kéo trên Cover</i></li><li>Slide ảnh<i>Random mặc định, Số ảnh dùng</i></li></ul></div>
+      <div class="tab"><h3>Page</h3><ul><li>Background + Hiệu ứng nền</li><li>Type<i>chọn chữ → Glass Text Fx → Neon → Font (Vị trí & căn lề gập lại) → Khoảng cách</i></li><li>Footer</li></ul></div>
       <div class="tab"><h3>Effects</h3><ul><li>Độ nặng + FPS</li><li>9 lớp xếp được, mỗi lớp có số độ nặng</li></ul></div>
       <div class="tab"><h3>Capture</h3><ul><li>Định dạng</li><li>Filter: Glow · Aberration · Vignette · Leak · Burn · Noise</li><li>Chụp Cover → khung crop mở sẵn trên Cover</li></ul></div>
     </div>
@@ -245,6 +246,7 @@ td.cnt{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
         <tr><td>Symbol</td><td><code>sym.x · sym.y · sym.size</code></td><td>sym.sx, sym.sy, hdr.size, zone.*</td></tr>
         <tr><td>Motion blur</td><td><code>fx.blur.mo · mamt · mang</code></td><td>dir, damt, dang, dd</td></tr>
         <tr><td>Filter Capture</td><td><code>cap.glow · cap.vig · cap.ab</code></td><td>fx.glow, fx.vig, fx.ab</td></tr>
+        <tr><td>Align</td><td>left · center · right · justify · jleft · jright</td><td>jleft/jright = canh đều, dòng cuối trái/phải</td></tr>
         <tr><td>select</td><td>hàng nút, chọn một</td><td>—</td></tr>
         <tr><td>multi-select</td><td>chip, chọn nhiều</td><td>—</td></tr>
       </tbody></table></div>
@@ -280,7 +282,7 @@ td.cnt{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
   <section>
     <div class="sh"><span class="n">10</span><h2>Đã chốt</h2></div>
     <div class="qa">
-      <div><b>Lớp Text là gì?</b>Là một mục trong danh sách lớp, cho phép đặt hiệu ứng lên trên chữ. Đã bỏ: chữ luôn nằm trên mọi lớp FX, chỉ filter Capture phủ lên chữ.</div>
+      <div><b>Lớp Cover Text</b>Mục trong danh sách lớp chứa chữ và Symbol. Kéo lên xuống để chữ nằm trên hoặc dưới từng hiệu ứng. Filter Capture luôn phủ lên trên cùng.</div>
       <div><b>Bốn lớp "chỉ ảnh nền"</b>Radial, Path, Pixel stretch, Pixelize đúng là hiệu ứng trên Cover. "Chỉ ảnh nền" nghĩa là chúng chụp lại ảnh nền rồi xử lý bản sao đó, nên lớp nằm dưới (ví dụ Scan) không bị kéo theo. Muốn như Photoshop thật phải chụp cả Cover mỗi khung hình, rất nặng, nên giữ cách hiện tại.</div>
       <div><b>Glass Text Fx khác Mica / độ xuyên panel?</b>Mica text và Glass Text là một hiệu ứng, nay gộp thành Glass Text Fx. Độ xuyên (Transparency) là của panel CUSTOM; Glass Text Fx chỉ mượn nó khi bật Blend with Transparency.</div>
       <div><b>Vị trí chữ</b>Align là vị trí đặt nhanh, X/Y là tinh chỉnh. Khi panel mở thì kéo chữ ngay trên Cover, không hiện viền.</div>
@@ -288,7 +290,7 @@ td.cnt{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
     </div>
   </section>
 
-  <p class="foot">Số liệu đếm từ v0.27.</p>
+  <p class="foot">Số liệu đếm từ v0.28.</p>
 </div>
 
 </body>
