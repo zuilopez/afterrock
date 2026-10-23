@@ -11,7 +11,7 @@ import xml.etree.ElementTree as ET
 
 OUT = Path(__file__).resolve().parent.parent / "VI" / "news.json"
 KEEP = 300  # older articles stay readable on news.html (archive)
-PICK_PER_RUN = 8
+PICK_PER_RUN = 20
 MATCH = re.compile(r"\b(GTA\s?(6|VI)|Grand Theft Auto\s?(6|VI))\b", re.I)
 FEEDS = [
     ("Push Square", "https://www.pushsquare.com/feeds/latest"),
@@ -21,7 +21,7 @@ FEEDS = [
     ("PC Gamer", "https://www.pcgamer.com/rss/"),
     ("Pure Xbox", "https://www.purexbox.com/feeds/latest"),
     ("TGG · YouTube", "https://www.youtube.com/feeds/videos.xml?channel_id=UC72PuhDwKtZ5MikpGNhPAtA"),
-    ("GTAVice.net", "html:https://www.gtavice.net/"),
+    ("GTAVice.net", "html:https://www.gtavice.net/news"),   # the news listing, newest first
     (None, "https://news.google.com/rss/search?q=%22GTA+6%22+OR+%22Grand+Theft+Auto+VI%22+when:2d&hl=en-US&gl=US&ceid=US:en"),
 ]
 UA = {"User-Agent": "Mozilla/5.0 (compatible; LeonidaLogBot/1.0; +https://github.com/zuilopez/afterrock)"}
@@ -84,7 +84,7 @@ def meta(page, prop):
     return html.unescape(m.group(1)) if m else ""
 
 
-def parse_html(source, url, limit=6):
+def parse_html(source, url, limit=20):
     """Sites without a feed: read the news links on the front page, then each article's meta tags."""
     base = re.match(r"https?://[^/]+", url).group(0)
     page = get(url).decode("utf-8", "ignore")
