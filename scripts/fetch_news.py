@@ -11,7 +11,7 @@ import xml.etree.ElementTree as ET
 
 OUT = Path(__file__).resolve().parent.parent / "VI" / "news.json"
 KEEP = 300  # older articles stay readable on news.html (archive)
-PICK_PER_RUN = 3
+PICK_PER_RUN = 8
 MATCH = re.compile(r"\b(GTA\s?(6|VI)|Grand Theft Auto\s?(6|VI))\b", re.I)
 FEEDS = [
     ("Push Square", "https://www.pushsquare.com/feeds/latest"),
@@ -147,8 +147,13 @@ def parse(source, xml_bytes):
         src = source
         if src is None:  # Google News: "Headline - Publisher"
             s_el = item.find("source")
-            src = (s_el.text if s_el is not None else "") or "Google News"
-            title = re.sub(r"\s+-\s+[^-]+$", "", title)
+            src = ((s_el.text if s_el is not None else "") or "Google News").strip()
+            if title.endswith(" - " + src):
+                title = title[: -len(src) - 3]
+            else:
+                title = re.sub(r"\s+-\s+\S+$", "", title)
+            if src.startswith("http"):  # some publishers only give their address
+                src = re.sub(r"^https?://(www\.)?", "", src).strip("/")
             desc = ""
         date = to_iso(item.findtext("pubDate") or "")
         out.append({

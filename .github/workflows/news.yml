@@ -2,7 +2,7 @@ name: Daily GTA VI news
 
 on:
   schedule:
-    - cron: "17 23 * * *"   # 06:17 ICT every day
+    - cron: "17 23,5,11 * * *"   # 06:17, 12:17 and 18:17 ICT every day
   workflow_dispatch:
 
 permissions:
